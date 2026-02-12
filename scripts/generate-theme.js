@@ -32,7 +32,7 @@ const mapping = {
 
 const url =
   process.argv[2] ||
-  "https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit";
+  "https://www.srf.ch/article/019b2cbc-ac23-7005-62a9-0bfcf4e5c505";
 // const jsCodeFile =
 //   process.argv[3] || "scripts/assets/parse-darktheme-overrides.js";
 const outputFile = path.resolve("theme-override/themeVariables.scss");
