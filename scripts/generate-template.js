@@ -6,6 +6,10 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "node:url";
 import prettier from "prettier";
+import {
+  mergeAllCssFiles,
+  pointAssetUrlsToSandbox,
+} from "./utils/file-helper.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -52,85 +56,6 @@ if (!url) {
   process.exit(1);
 }
 
-// Remove all CSS files except merged.css from the directory and subdirectories
-async function removeMergedCssFiles(dir, mergedName) {
-  const entries = await fs.readdir(dir, { withFileTypes: true });
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      await removeMergedCssFiles(fullPath, mergedName);
-    } else if (
-      entry.isFile() &&
-      entry.name.endsWith(".css") &&
-      entry.name !== mergedName
-    ) {
-      await fs.unlink(fullPath);
-      console.log("Removed CSS file:", fullPath);
-    }
-  }
-}
-// --- Merge all CSS files in outputDir into one merged.css ---
-// Recursively collect all CSS files in a directory (excluding merged.css)
-async function collectCssFiles(dir, mergedName) {
-  let cssFiles = [];
-  const entries = await fs.readdir(dir, { withFileTypes: true });
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      cssFiles = cssFiles.concat(await collectCssFiles(fullPath, mergedName));
-    } else if (
-      entry.isFile() &&
-      entry.name.endsWith(".css") &&
-      entry.name !== mergedName
-    ) {
-      cssFiles.push(fullPath);
-    }
-  }
-  return cssFiles;
-}
-
-async function mergeAllCssFiles(dir, mergedName) {
-  const cssFiles = await collectCssFiles(dir, mergedName);
-  let merged = "";
-  for (const file of cssFiles) {
-    merged += `/* --- ${path.relative(dir, file)} --- */\n`;
-    merged += await fs.readFile(file, "utf8");
-    merged += "\n";
-  }
-  const mergedPath = path.join(dir, mergedName);
-  merged = pointAssetUrlsToSandbox(merged);
-  await fs.writeFile(mergedPath, merged, { encoding: "utf8" });
-  console.log("Merged CSS written to:", mergedPath);
-}
-
-function pointAssetUrlsToSandbox(code) {
-  return code.replace(
-    /(["'])\/([^"']*?)\/([^"']*?)\1/g,
-    (match, quote, path1, filename) => {
-      const newPath = `./sandbox-assets/${path1}/${filename}`;
-      return `${quote}${newPath}${quote}`;
-    },
-  );
-}
-
-// --- Helper to patch staticfiles paths in CSS ---
-function patchStaticfilesInCss(css, newBase = "/sandbox-assets/staticfiles") {
-  // Accept Buffer or string
-  if (Buffer.isBuffer(css)) css = css.toString("utf8");
-  // return css.replace(
-  //   /url\((['"]?)\/staticfiles\//g,
-  //   (match, quote) => `url(${quote}${newBase.replace(/\/$/, "")}/`,
-  // );
-
-  return css.replace(
-    /(["']?)\/([^"']*?)\/([^"']*?)\1/g,
-    (match, quote, path1, filename) => {
-      const newPath = `./sandbox-assets/${path1}/${filename}`;
-      return `${quote}${newPath}${quote}`;
-    },
-  );
-}
-
 const outputDirPath = path.join(publicDir, outputDir);
 await fs.mkdir(publicDir, { recursive: true });
 await fs.mkdir(outputDirPath, {
@@ -155,9 +80,9 @@ page.on("response", async (response) => {
   try {
     const reqUrl = response.url();
     const ct = response.headers()["content-type"] || "";
-
-    // Download CSS
+    if (reqUrl.includes("base64,")) return;
     if (ct.includes("css") || reqUrl.match(/\.css(\?|$)/)) {
+      // Download CSS
       if (cssSeen.has(reqUrl)) return;
       cssSeen.add(reqUrl);
       const css = await response.buffer();
@@ -168,9 +93,7 @@ page.on("response", async (response) => {
       urlPath = urlPath.split("?")[0];
       const outPath = path.join(outputDirPath, urlPath);
       await fs.mkdir(path.dirname(outPath), { recursive: true });
-      // Patch staticfiles paths in CSS before writing
-      const patchedCss = patchStaticfilesInCss(css);
-      await fs.writeFile(outPath, patchedCss, { encoding: "utf8" });
+      await fs.writeFile(outPath, css, { encoding: "utf8" });
       cssFiles.push(urlPath);
       console.log("Saved CSS:", outPath);
       return;
@@ -255,14 +178,12 @@ await page.evaluate((replacements) => {
   }
 }, Object.entries(TEXT_REPLACEMENTS));
 
-// Perform CSS merging
+// Perform CSS merging (remove all stylesheet links and create a new one)
 await page.evaluate((cssHref) => {
-  // remove all stylesheets
   document
     .querySelectorAll("link[rel='stylesheet']")
     .forEach((el) => el.remove());
 
-  // add one stylesheet link for merged.css (will be patched later to point to the correct path)
   const mergedCssLink = document.createElement("link");
   mergedCssLink.rel = "stylesheet";
   mergedCssLink.href = cssHref;
@@ -301,7 +222,5 @@ await browser.close();
 
 // Merge all CSS files in outputDirPath
 await mergeAllCssFiles(outputDirPath, cssFileName);
-// Remove all CSS files except merged.css
-await removeMergedCssFiles(outputDirPath, cssFileName);
 
 console.log("Done.");
