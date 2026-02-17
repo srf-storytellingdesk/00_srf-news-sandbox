@@ -5,7 +5,7 @@
     <title><%= title %></title>
     <link
       rel="preconnect"
-      href="./sandbox-assets//app.usercentrics.eu"
+      href="//app.usercentrics.eu"
       crossorigin="anonymous"
     />
 
@@ -37,7 +37,7 @@
       href="./sandbox-assets/build/assets/srf-apple-touch-icon-BRxTgjQQ.png"
     />
 
-    <link rel="stylesheet" href="./sandbox-assets/merged.css" />
+    <link rel="stylesheet" href="/sandbox-assets/merged.css" />
   </head>
 
   <body
@@ -47,14 +47,8 @@
     data-portal-urn="urn:srf:portal:news"
     data-phase="prod"
   >
-    <noscript class="nojs-banner">
-      <p class="nojs-banner__text">
-        Einige Elemente auf SRF.ch funktionieren nur mit aktiviertem JavaScript.
-      </p>
-    </noscript>
-
     <a
-      href="#skiplink__contentlink"
+      href="#"
       class="js-skiplink h-offscreen h-offscreen-focusable h-offscreen-focusable--top"
       data-skiplink="true"
     >
@@ -86,7 +80,7 @@
           <h2 id="masthead-label" class="h-offscreen">Header</h2>
 
           <div class="masthead__logo">
-            <a href="/" class="main-logo">
+            <a href="#" class="main-logo">
               <span class="h-offscreen"
                 >Schweizer Radio und Fernsehen, zur Startseite</span
               >
@@ -103,29 +97,29 @@
             <h3 id="masthead-portals-label" class="h-offscreen">Rubriken</h3>
             <ul class="portalsnav">
               <li>
-                <a class="portalsnav__link" href="/news">News</a>
+                <a class="portalsnav__link" href="#">News</a>
               </li>
               <li>
-                <a class="portalsnav__link" href="/sport">Sport</a>
+                <a class="portalsnav__link" href="#">Sport</a>
               </li>
               <li>
-                <a class="portalsnav__link" href="/meteo">Meteo</a>
+                <a class="portalsnav__link" href="#">Meteo</a>
               </li>
               <li>
-                <a class="portalsnav__link" href="/kultur">Kultur</a>
+                <a class="portalsnav__link" href="#">Kultur</a>
               </li>
               <li>
-                <a class="portalsnav__link" href="/wissen">Wissen</a>
+                <a class="portalsnav__link" href="#">Wissen</a>
               </li>
               <li>
-                <a class="portalsnav__link" href="/kids">Kids</a>
+                <a class="portalsnav__link" href="#">Kids</a>
               </li>
             </ul>
           </nav>
 
           <div class="masthead__button-wrapper">
             <a
-              href="./sandbox-assets/play/tv"
+              href="#"
               class="button button--transparent button--align-left button--no-spacing button--icon-button button--mixed-case button--no-text-on-mobile"
               data-referrer-track="srg_mod1=header_navigation&amp;srg_mod2=top_navi&amp;srg_mod3=play"
             >
@@ -147,7 +141,7 @@
             </a>
 
             <a
-              href="/audio"
+              href="#"
               class="button button--transparent button--align-left button--no-spacing button--icon-button button--mixed-case button--no-text-on-mobile"
               data-referrer-track="srg_mod1=header_navigation&amp;srg_mod2=top_navi&amp;srg_mod3=audio"
             >
@@ -172,7 +166,7 @@
               <h3 id="main-nav-label" class="h-offscreen">Hauptmenü/Suche</h3>
               <div class="masthead__menu-button-container">
                 <a
-                  href="#skiplink__footer"
+                  href="#"
                   class="button button--transparent button--align-left button--no-spacing button--icon-button button--mixed-case button--no-text-on-desktop-down"
                   data-modal-id="modal-menu"
                   aria-haspopup="false"
@@ -201,95 +195,22 @@
       </div>
     </header>
 
-    <div
-      style="display: none"
-      class="app-promo-banner js-app-promo-banner"
-      data-js-plugin="app-promo-banner"
-      data-storage-key="app-promo-banner-news"
-      data-app-id="ch.srf.mobile"
-    >
-      <div
-        class="app-promo-banner__icon-wrapper"
-        role="presentation"
-        aria-hidden="true"
-      >
-        <span
-          class="svg-icon svg-icon--news-app svg-icon--adjust-to-container"
-        ></span>
-      </div>
-
-      <div
-        class="app-promo-banner__text-wrapper"
-        role="presentation"
-        aria-hidden="true"
-      >
-        <p class="app-promo-banner__title">SRF News App</p>
-        <p
-          class="app-promo-banner__subtitle js-app-promo-banner-subtitle-not-installed"
-        >
-          Bei Google Play
-        </p>
-        <p
-          class="app-promo-banner__subtitle js-app-promo-banner-subtitle-installed"
-        >
-          In der App öffnen
-        </p>
-      </div>
-
-      <a
-        href="https://play.google.com/store/apps/details?id=ch.srf.mobile"
-        target="_blank"
-        class="button button--theme-call-to-action button--pill button--pill-small button--themed js-app-promo-banner-button-not-installed"
-        data-event-track="event_source=app-promo-banner&amp;event_type=click&amp;event_name=open-app-store"
-      >
-        <span class="h-offscreen"
-          >News-App bei Google Play herunterladen (Wird in einem neuen Fenster
-          geöffnet.)</span
-        >
-
-        <span class="button-wrapper" aria-hidden="true" role="presentation">
-          <span class="button-text">Laden</span>
-        </span>
-      </a>
-
-      <a
-        href="./sandbox-assets/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit"
-        target="_blank"
-        class="button button--theme-call-to-action button--pill button--pill-small button--themed js-app-promo-banner-button-installed"
-        data-event-track="event_source=app-promo-banner&amp;event_type=click&amp;event_name=open-in-app"
-      >
-        <span class="h-offscreen">Diese Seite in der News-App öffnen</span>
-
-        <span class="button-wrapper" aria-hidden="true" role="presentation">
-          <span class="button-text">Öffnen</span>
-        </span>
-      </a>
-
-      <button
-        class="button app-promo-banner__close-button button--transparent button--align-left button--no-spacing button--icon-only js-app-promo-banner-close-button"
-      >
-        <span class="h-offscreen">Diesen Banner schliessen</span>
-
-        <span
-          class="button-wrapper button-wrapper--svg-icon"
-          aria-hidden="true"
-          role="presentation"
-        >
-          <span class="button-icon app-promo-banner__custom-sized-button-icon">
-            <span
-              class="svg-icon svg-icon--close svg-icon--adjust-to-container"
-            ></span>
-          </span>
-        </span>
-      </button>
-    </div>
-
     <main class="articlepage">
       <article
         class="articlepage__article js-article"
         itemscope=""
         itemtype="https://schema.org/Article"
       >
+        <section class="articlepage__topmedia" data-news-landmark="topmedia">
+          <div class="articlepage__topmedia-fullwidth-element">
+            <div class="embed embed--html">
+              <div class="embed__content">
+                <div id="tme-embed"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <nav
           class="articlepage__breadcrumbs articlepage__breadcrumbs--top"
           data-news-landmark="breadcrumbs-top"
@@ -308,7 +229,7 @@
             >
               <a
                 class="breadcrumb__link"
-                href="/news"
+                href="#"
                 data-referrer-track="srg_mod1=breadcrumb_navigation_top&amp;srg_mod2=1"
                 itemprop="item"
               >
@@ -323,7 +244,7 @@
             >
               <a
                 class="breadcrumb__link"
-                href="./sandbox-assets/news/dialog"
+                href="#"
                 data-referrer-track="srg_mod1=breadcrumb_navigation_top&amp;srg_mod2=2"
                 itemprop="item"
               >
@@ -570,7 +491,7 @@
                 </li>
                 <li class="menu-list__item">
                   <a
-                    href="mailto:?subject=Humanit%C3%A4re%20Krisen%20ohne%20Aufmerksamkeit&amp;body=https%3A%2F%2Fwww.srf.ch%2Fnews%2Fdialog%2Ffehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit%3Fsrg_sm_medium%3Dem"
+                    href="#"
                     class="menu-link"
                     data-share-url="https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit"
                     data-event-track="event_source=article_share_bar_share-email&amp;event_name=Teilen"
@@ -712,139 +633,6 @@
           Echo der Zeit, 6.2.2026, 18 Uhr;liea
         </p>
         <div class="article-element article-element--bleed">
-          <noscript>
-            <div class="related-items-list">
-              <h2 class="related-items-list__heading">Mehr zum Thema</h2>
-
-              <ul class="related-items-list__list">
-                <li class="related-items-list__item-wrapper">
-                  <a
-                    href="./sandbox-assets/news/international/gewalt-in-zentralamerika-honduras-im-wuergegriff-der-banden"
-                    class="related-item"
-                  >
-                    <div class="related-item__image" aria-hidden="true">
-                      <div
-                        class="image js-image js-image-lazyload"
-                        data-image-provider="rokka"
-                        data-image-id="2c11da"
-                      >
-                        <picture>
-                          <img
-                            alt=""
-                            class="image__img"
-                            loading="lazy"
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                          />
-                        </picture>
-                      </div>
-                    </div>
-                    <div class="related-item__content">
-                      <p class="related-item__kicker">
-                        Gewalt in Zentralamerika
-                      </p>
-                      <h3 class="related-item__title">
-                        Honduras im Würgegriff der Banden
-                      </h3>
-                    </div>
-                  </a>
-                </li>
-                <li class="related-items-list__item-wrapper">
-                  <a
-                    href="./sandbox-assets/news/international/kongo-kinshasa-und-ruanda-ein-friedensabkommen-ohne-die-staerkste-miliz-was-bringt-das"
-                    class="related-item"
-                  >
-                    <div class="related-item__image" aria-hidden="true">
-                      <div
-                        class="image js-image js-image-lazyload"
-                        data-image-provider="rokka"
-                        data-image-id="101f01"
-                      >
-                        <picture>
-                          <img
-                            alt=""
-                            class="image__img"
-                            loading="lazy"
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                          />
-                        </picture>
-                      </div>
-                    </div>
-                    <div class="related-item__content">
-                      <p class="related-item__kicker">
-                        Kongo Kinshasa und Ruanda
-                      </p>
-                      <h3 class="related-item__title">
-                        Ein Friedensabkommen ohne die stärkste Miliz – was
-                        bringt das?
-                      </h3>
-                    </div>
-                  </a>
-                </li>
-                <li class="related-items-list__item-wrapper">
-                  <a
-                    href="./sandbox-assets/news/international/buergerkrieg-im-sudan-zwischen-resilienz-und-trauma-die-menschen-von-port-sudan"
-                    class="related-item"
-                  >
-                    <div class="related-item__image" aria-hidden="true">
-                      <div
-                        class="image js-image js-image-lazyload"
-                        data-image-provider="rokka"
-                        data-image-id="c71187"
-                      >
-                        <picture>
-                          <img
-                            alt=""
-                            class="image__img"
-                            loading="lazy"
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                          />
-                        </picture>
-                      </div>
-                    </div>
-                    <div class="related-item__content">
-                      <p class="related-item__kicker">Bürgerkrieg im Sudan</p>
-                      <h3 class="related-item__title">
-                        Zwischen Resilienz und Trauma: die Menschen von Port
-                        Sudan
-                      </h3>
-                    </div>
-                  </a>
-                </li>
-                <li class="related-items-list__item-wrapper">
-                  <a
-                    href="./sandbox-assets/news/international/grenze-suedafrika-simbabwe-suedafrikas-grenzschutz-inszeniert-einen-skandal"
-                    class="related-item"
-                  >
-                    <div class="related-item__image" aria-hidden="true">
-                      <div
-                        class="image js-image js-image-lazyload"
-                        data-image-provider="rokka"
-                        data-image-id="729c62"
-                      >
-                        <picture>
-                          <img
-                            alt=""
-                            class="image__img"
-                            loading="lazy"
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                          />
-                        </picture>
-                      </div>
-                    </div>
-                    <div class="related-item__content">
-                      <p class="related-item__kicker">
-                        Grenze Südafrika-Simbabwe
-                      </p>
-                      <h3 class="related-item__title">
-                        Südafrikas Grenzschutz inszeniert einen Skandal
-                      </h3>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </noscript>
-
           <div
             data-list-heading="Mehr zum Thema"
             class="js-related-items-list"
@@ -858,7 +646,7 @@
                 <li class="related-items-list__item-wrapper">
                   <a
                     class="related-item"
-                    href="./sandbox-assets/news/international/gewalt-in-zentralamerika-honduras-im-wuergegriff-der-banden"
+                    href="#"
                     data-referrer-track="srg_mod1=content&amp;srg_mod2=article_teaser&amp;srg_mod3=more&amp;srg_mod4=019c1df0-9197-d8fd-6802-be408e31139d"
                     data-urn="urn:srf:article:019ae37e-8256-7f0e-6767-eabd0bf4b0f0"
                     data-title="Honduras im Würgegriff der Banden"
@@ -901,7 +689,7 @@
                 <li class="related-items-list__item-wrapper">
                   <a
                     class="related-item"
-                    href="./sandbox-assets/news/international/kongo-kinshasa-und-ruanda-ein-friedensabkommen-ohne-die-staerkste-miliz-was-bringt-das"
+                    href="#"
                     data-referrer-track="srg_mod1=content&amp;srg_mod2=article_teaser&amp;srg_mod3=more&amp;srg_mod4=019c1df0-9197-d8fd-6802-be408e31139d"
                     data-urn="urn:srf:article:0197b0c9-94ec-f5f5-0333-0a7728f6d9dd"
                     data-title="Ein Friedensabkommen ohne die stärkste Miliz – was bringt das?"
@@ -945,7 +733,7 @@
                 <li class="related-items-list__item-wrapper">
                   <a
                     class="related-item"
-                    href="./sandbox-assets/news/international/buergerkrieg-im-sudan-zwischen-resilienz-und-trauma-die-menschen-von-port-sudan"
+                    href="#"
                     data-referrer-track="srg_mod1=content&amp;srg_mod2=article_teaser&amp;srg_mod3=more&amp;srg_mod4=019c1df0-9197-d8fd-6802-be408e31139d"
                     data-urn="urn:srf:article:0196c42f-a426-f915-c4ba-dcd90fcd2ce1"
                     data-title="Zwischen Resilienz und Trauma: die Menschen von Port Sudan"
@@ -987,7 +775,7 @@
                 <li class="related-items-list__item-wrapper">
                   <a
                     class="related-item"
-                    href="./sandbox-assets/news/international/grenze-suedafrika-simbabwe-suedafrikas-grenzschutz-inszeniert-einen-skandal"
+                    href="#"
                     data-referrer-track="srg_mod1=content&amp;srg_mod2=article_teaser&amp;srg_mod3=more&amp;srg_mod4=019c1df0-9197-d8fd-6802-be408e31139d"
                     data-urn="urn:srf:article:21088448"
                     data-title="Südafrikas Grenzschutz inszeniert einen Skandal"
@@ -1090,7 +878,7 @@
             >
               <a
                 class="breadcrumb__link"
-                href="/news"
+                href="#"
                 data-referrer-track="srg_mod1=breadcrumb_navigation_bottom&amp;srg_mod2=1"
                 itemprop="item"
               >
@@ -1105,7 +893,7 @@
             >
               <a
                 class="breadcrumb__link"
-                href="./sandbox-assets/news/dialog"
+                href="#"
                 data-referrer-track="srg_mod1=breadcrumb_navigation_bottom&amp;srg_mod2=2"
                 itemprop="item"
               >
@@ -1122,7 +910,7 @@
         class="collection js-collection collection--swipeable js-collection-swipeable js-is-swipeable autobox js-autobox-collection"
         data-urn="urn:srf:autobox:news"
         data-referrer-track="srg_mod2=collection-swipeable&amp;srg_mod3=Meistgelesene%20Artikel"
-        data-load-url-default="./sandbox-assets/aron/api/articles/autobox?businessUnit=srf&amp;portalName=news&amp;limit=12&amp;representation=web"
+        data-load-url-default="/aron/api/articles/autobox?businessUnit=srf&amp;portalName=news&amp;limit=12&amp;representation=web"
       >
         <div class="collection__title-wrapper">
           <div class="collection__title-item collection__title-item--grower">
@@ -1141,13 +929,13 @@
         >
           <li class="collection__teaser-item js-teaser-item">
             <a
-              href="./sandbox-assets/news/schweiz/vorfall-an-schweizer-schule-ki-nacktbilder-neue-form-des-psychoterrors-an-schulen"
+              href="#"
               class="teaser js-teaser"
-              data-date-published="2026-02-12T08:22:33+01:00"
-              data-date-modified="2026-02-12T08:22:33+01:00"
+              data-date-published="2026-02-16T10:57:25+01:00"
+              data-date-modified="2026-02-17T16:24:33+01:00"
               data-source=""
-              data-urn="urn:srf:article:019c4c9c-f4c5-a29c-f195-59e82e27bd73"
-              data-title="KI-Nacktbilder: neue Form des Psychoterrors an Schulen"
+              data-urn="urn:srf:article:019c65bb-5a4d-889c-4ea8-44950995ea4e"
+              data-title="Höchste Lawinengefahr in Teilen des Wallis – die Übersicht"
               data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
               data-content-categories="News Schweiz"
             >
@@ -1155,13 +943,13 @@
                 <div
                   class="image js-image js-image-lazyload"
                   data-image-provider="rokka"
-                  data-image-id="c116d2"
+                  data-image-id="125060"
                   data-largest-loaded-version="320w"
                 >
                   <picture
                     ><source
                       srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/c116d2.webp
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/125060.webp
                       "
                       type="image/webp"
                     />
@@ -1169,7 +957,7 @@
                       alt=""
                       class="image__img"
                       loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/c116d2.webp"
+                      src="./sandbox-assets/static/cms/images/320ws/125060.webp"
                     />
                   </picture>
                 </div>
@@ -1179,19 +967,19 @@
                 <div class="teaser__text">
                   <div class="teaser__kicker">
                     <span class="teaser__kicker-text"
-                      >Vorfall an Schweizer Schule</span
+                      >Kritische Lage in den Alpen</span
                     >
                   </div>
 
                   <span class="teaser__title"
-                    >KI-Nacktbilder: neue Form des Psychoterrors an
-                    Schulen</span
+                    >Höchste Lawinengefahr in Teilen des Wallis – die
+                    Übersicht</span
                   >
 
                   <p class="teaser__lead">
-                    Ein Vorfall an einer Deutschschweizer Schule erschüttert.
-                    Das können Eltern und Schulen gegen die Deepfakes
-                    unternehmen.
+                    Viel Schnee und Sturm sorgen für eine kritische
+                    Lawinensituation in der Schweiz. Im Wallis sind Täler
+                    gesperrt.
                   </p>
                 </div>
               </div>
@@ -1200,228 +988,11 @@
                 <div
                   class="teaser-meta js-teaser-meta teaser__meta"
                   role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019c4c9c-f4c5-a29c-f195-59e82e27bd73"
-                  data-teaser-meta-audio="true"
-                  data-teaser-meta-published-at="2026-02-12T08:22:33+01:00"
-                  data-teaser-meta-published-at-permanent="2026-02-12T08:22:33+01:00"
-                  data-teaser-meta-modified-at="2026-02-12T08:22:33+01:00"
-                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
-                >
-                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
-                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="collection__teaser-item js-teaser-item">
-            <a
-              href="./sandbox-assets/news/international/der-fall-epstein-die-abgruende-der-ghislaine-maxwell"
-              class="teaser js-teaser"
-              data-date-published="2026-02-12T10:19:37+01:00"
-              data-date-modified="2026-02-12T10:19:37+01:00"
-              data-source=""
-              data-urn="urn:srf:article:019c4d77-47d4-17bc-3afb-9d46b100b7b2"
-              data-title="Die Abgründe der Ghislaine Maxwell"
-              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
-              data-content-categories="News International"
-            >
-              <div class="teaser__medium">
-                <div
-                  class="image js-image js-image-lazyload"
-                  data-image-provider="rokka"
-                  data-image-id="7f1b1d5"
-                  data-largest-loaded-version="320w"
-                >
-                  <picture
-                    ><source
-                      srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/7f1b1d5.webp
-                      "
-                      type="image/webp"
-                    />
-                    <img
-                      alt=""
-                      class="image__img"
-                      loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/7f1b1d5.webp"
-                    />
-                  </picture>
-                </div>
-              </div>
-
-              <div class="teaser__content" role="text">
-                <div class="teaser__text">
-                  <div class="teaser__kicker">
-                    <span class="teaser__kicker-text">Der Fall Epstein</span>
-                  </div>
-
-                  <span class="teaser__title"
-                    >Die Abgründe der Ghislaine Maxwell</span
-                  >
-
-                  <p class="teaser__lead">
-                    Die britische Journalistin Anne McElvoy erklärt, wie aus
-                    ihrer früheren Studienfreundin eine Sexualstraftäterin
-                    wurde.
-                  </p>
-                </div>
-              </div>
-
-              <div class="teaser__extras">
-                <div
-                  class="teaser-meta js-teaser-meta teaser__meta"
-                  role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019c4d77-47d4-17bc-3afb-9d46b100b7b2"
-                  data-teaser-meta-audio="true"
-                  data-teaser-meta-published-at="2026-02-12T10:19:37+01:00"
-                  data-teaser-meta-published-at-permanent="2026-02-12T10:19:37+01:00"
-                  data-teaser-meta-modified-at="2026-02-12T10:19:37+01:00"
-                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
-                >
-                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
-                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="collection__teaser-item js-teaser-item">
-            <a
-              href="./sandbox-assets/news/international/usa/trump-berater-stephen-miller-extrem-und-ergeben-trumps-macher-miller"
-              class="teaser js-teaser"
-              data-date-published="2026-02-12T05:44:03+01:00"
-              data-date-modified="2026-02-12T05:44:03+01:00"
-              data-source=""
-              data-urn="urn:srf:article:019c4a45-b5ff-2b9a-8eea-be40e29cffc4"
-              data-title="Extrem und ergeben: Trumps Macher Miller"
-              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
-              data-content-categories="News International"
-            >
-              <div class="teaser__medium">
-                <div
-                  class="image js-image js-image-lazyload"
-                  data-image-provider="rokka"
-                  data-image-id="c61ccc"
-                  data-largest-loaded-version="320w"
-                >
-                  <picture
-                    ><source
-                      srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/c61ccc.webp
-                      "
-                      type="image/webp"
-                    />
-                    <img
-                      alt=""
-                      class="image__img"
-                      loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/c61ccc.webp"
-                    />
-                  </picture>
-                </div>
-              </div>
-
-              <div class="teaser__content" role="text">
-                <div class="teaser__text">
-                  <div class="teaser__kicker">
-                    <span class="teaser__kicker-text"
-                      >Trump-Berater Stephen Miller</span
-                    >
-                  </div>
-
-                  <span class="teaser__title"
-                    >Extrem und ergeben: Trumps Macher Miller</span
-                  >
-
-                  <p class="teaser__lead">
-                    Er gilt als Architekt der knallharten
-                    US-Einwanderungspolitik und als eine der mächtigsten Figuren
-                    im Weissen Haus.
-                  </p>
-                </div>
-              </div>
-
-              <div class="teaser__extras">
-                <div
-                  class="teaser-meta js-teaser-meta teaser__meta"
-                  role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019c4a45-b5ff-2b9a-8eea-be40e29cffc4"
-                  data-teaser-meta-audio="true"
-                  data-teaser-meta-published-at="2026-02-12T05:44:03+01:00"
-                  data-teaser-meta-published-at-permanent="2026-02-12T05:44:03+01:00"
-                  data-teaser-meta-modified-at="2026-02-12T05:44:03+01:00"
-                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
-                >
-                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
-                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="collection__teaser-item js-teaser-item">
-            <a
-              href="./sandbox-assets/news/international/republikanische-abweichler-trump-reagiert-ungehalten-sechs-republikaner-gegen-kanada-zoelle"
-              class="teaser js-teaser"
-              data-date-published="2026-02-12T07:57:26+01:00"
-              data-date-modified="2026-02-12T07:57:26+01:00"
-              data-source=""
-              data-urn="urn:srf:article:019c5076-30dd-abf0-b599-0f636cdcffb5"
-              data-title="Trump reagiert ungehalten: Sechs Republikaner gegen Kanada-Zölle"
-              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
-              data-content-categories="News International"
-            >
-              <div class="teaser__medium">
-                <div
-                  class="image js-image js-image-lazyload"
-                  data-image-provider="rokka"
-                  data-image-id="100354"
-                  data-largest-loaded-version="320w"
-                >
-                  <picture
-                    ><source
-                      srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/100354.webp
-                      "
-                      type="image/webp"
-                    />
-                    <img
-                      alt=""
-                      class="image__img"
-                      loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/100354.webp"
-                    />
-                  </picture>
-                </div>
-              </div>
-
-              <div class="teaser__content" role="text">
-                <div class="teaser__text">
-                  <div class="teaser__kicker">
-                    <span class="teaser__kicker-text"
-                      >Republikanische Abweichler</span
-                    >
-                  </div>
-
-                  <span class="teaser__title"
-                    >Trump reagiert ungehalten: Sechs Republikaner gegen
-                    Kanada-Zölle</span
-                  >
-
-                  <p class="teaser__lead">
-                    Das Votum gegen die Zölle kam nur zustande, weil sechs
-                    republikanische Abgeordnete mit den Demokraten stimmten.
-                  </p>
-                </div>
-              </div>
-
-              <div class="teaser__extras">
-                <div
-                  class="teaser-meta js-teaser-meta teaser__meta"
-                  role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019c5076-30dd-abf0-b599-0f636cdcffb5"
+                  data-teaser-meta-source-id="urn:srf:article:019c65bb-5a4d-889c-4ea8-44950995ea4e"
                   data-teaser-meta-video="true"
-                  data-teaser-meta-published-at="2026-02-12T07:57:26+01:00"
-                  data-teaser-meta-published-at-permanent="2026-02-12T07:57:26+01:00"
-                  data-teaser-meta-modified-at="2026-02-12T07:57:26+01:00"
+                  data-teaser-meta-published-at="2026-02-16T10:57:25+01:00"
+                  data-teaser-meta-published-at-permanent="2026-02-16T10:57:25+01:00"
+                  data-teaser-meta-modified-at="2026-02-17T16:24:33+01:00"
                   data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
                 >
                   <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
@@ -1432,13 +1003,13 @@
           </li>
           <li class="collection__teaser-item js-teaser-item">
             <a
-              href="./sandbox-assets/news/schweiz/luzerner-fasnacht-2026-mit-nadel-holz-und-3d-druck-luzern-zeigt-fantasie-pur"
+              href="#"
               class="teaser js-teaser"
-              data-date-published="2026-02-12T05:00:01+01:00"
-              data-date-modified="2026-02-12T12:02:26+01:00"
+              data-date-published="2026-02-17T05:52:37+01:00"
+              data-date-modified="2026-02-17T05:52:37+01:00"
               data-source=""
-              data-urn="urn:srf:article:019c4300-173b-3697-e4bf-ad8f52968ca6"
-              data-title="Mit Nadel, Holz und 3D-Druck: Luzern zeigt Fantasie pur"
+              data-urn="urn:srf:article:019c66af-5b3f-57b1-98c0-c5435a9fe705"
+              data-title="Warum es in der Schweiz immer mehr Vergiftungsfälle gibt"
               data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
               data-content-categories="News Schweiz"
             >
@@ -1446,13 +1017,13 @@
                 <div
                   class="image js-image js-image-lazyload"
                   data-image-provider="rokka"
-                  data-image-id="055822"
+                  data-image-id="a5335a"
                   data-largest-loaded-version="320w"
                 >
                   <picture
                     ><source
                       srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/055822.webp
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/a5335a.webp
                       "
                       type="image/webp"
                     />
@@ -1460,7 +1031,7 @@
                       alt=""
                       class="image__img"
                       loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/055822.webp"
+                      src="./sandbox-assets/static/cms/images/320ws/a5335a.webp"
                     />
                   </picture>
                 </div>
@@ -1470,18 +1041,18 @@
                 <div class="teaser__text">
                   <div class="teaser__kicker">
                     <span class="teaser__kicker-text"
-                      >Luzerner Fasnacht 2026</span
+                      >Unfälle und Suizidversuche</span
                     >
                   </div>
 
                   <span class="teaser__title"
-                    >Mit Nadel, Holz und 3D-Druck: Luzern zeigt Fantasie
-                    pur</span
+                    >Warum es in der Schweiz immer mehr Vergiftungsfälle
+                    gibt</span
                   >
 
                   <p class="teaser__lead">
-                    Die Luzerner Fasnacht 2026 ist lanciert. Viele Sujets sind
-                    voller Liebe zum Detail. Kreativ und handgemacht.
+                    Die Anrufe beim Giftnotruf nehmen jedes Jahr zu. Eine Ärztin
+                    erklärt, warum oft Kinder und Jugendliche betroffen sind.
                   </p>
                 </div>
               </div>
@@ -1490,11 +1061,10 @@
                 <div
                   class="teaser-meta js-teaser-meta teaser__meta"
                   role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019c4300-173b-3697-e4bf-ad8f52968ca6"
-                  data-teaser-meta-video="true"
-                  data-teaser-meta-published-at="2026-02-12T05:00:01+01:00"
-                  data-teaser-meta-published-at-permanent="2026-02-12T05:00:01+01:00"
-                  data-teaser-meta-modified-at="2026-02-12T12:02:26+01:00"
+                  data-teaser-meta-source-id="urn:srf:article:019c66af-5b3f-57b1-98c0-c5435a9fe705"
+                  data-teaser-meta-published-at="2026-02-17T05:52:37+01:00"
+                  data-teaser-meta-published-at-permanent="2026-02-17T05:52:37+01:00"
+                  data-teaser-meta-modified-at="2026-02-17T05:52:37+01:00"
                   data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
                 >
                   <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
@@ -1505,27 +1075,27 @@
           </li>
           <li class="collection__teaser-item js-teaser-item">
             <a
-              href="./sandbox-assets/news/schweiz/affenbaby-in-ostschweizer-zoo-historisches-schimpansenbaby-fuehrt-zu-kritik-von-tierschutz"
+              href="#"
               class="teaser js-teaser"
-              data-date-published="2026-02-12T05:45:04+01:00"
-              data-date-modified="2026-02-12T05:45:04+01:00"
+              data-date-published="2026-02-17T05:53:59+01:00"
+              data-date-modified="2026-02-17T05:53:59+01:00"
               data-source=""
-              data-urn="urn:srf:article:019c4c9f-0c6e-2575-4d87-fdf28bfa8e1a"
-              data-title="Historisches Schimpansenbaby führt zu Kritik von Tierschutz"
+              data-urn="urn:srf:article:019c51ec-24a0-7afd-c7f7-58615dbb1960"
+              data-title="Ein trauriges Plüschpferd erobert die Herzen von Chinas Jugend"
               data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
-              data-content-categories="News Schweiz"
+              data-content-categories="News International"
             >
               <div class="teaser__medium">
                 <div
                   class="image js-image js-image-lazyload"
                   data-image-provider="rokka"
-                  data-image-id="a77d5c"
+                  data-image-id="a18ffd"
                   data-largest-loaded-version="320w"
                 >
                   <picture
                     ><source
                       srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/a77d5c.webp
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/a18ffd.webp
                       "
                       type="image/webp"
                     />
@@ -1533,7 +1103,7 @@
                       alt=""
                       class="image__img"
                       loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/a77d5c.webp"
+                      src="./sandbox-assets/static/cms/images/320ws/a18ffd.webp"
                     />
                   </picture>
                 </div>
@@ -1543,18 +1113,18 @@
                 <div class="teaser__text">
                   <div class="teaser__kicker">
                     <span class="teaser__kicker-text"
-                      >Affenbaby in Ostschweizer Zoo</span
+                      >Fehlproduktion zum Neujahr</span
                     >
                   </div>
 
                   <span class="teaser__title"
-                    >Historisches Schimpansenbaby führt zu Kritik von
-                    Tierschutz</span
+                    >Ein trauriges Plüschpferd erobert die Herzen von Chinas
+                    Jugend</span
                   >
 
                   <p class="teaser__lead">
-                    Der Walter Zoo in Gossau war überrascht ob der scharfen
-                    Kritik einer internationalen Tierschutzorganisation.
+                    Zum Neujahr gibts in China jeweils Plüschtiere. Diesmal
+                    sorgt ein ganz besonderes Pferd für Aufsehen.
                   </p>
                 </div>
               </div>
@@ -1563,11 +1133,229 @@
                 <div
                   class="teaser-meta js-teaser-meta teaser__meta"
                   role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019c4c9f-0c6e-2575-4d87-fdf28bfa8e1a"
+                  data-teaser-meta-source-id="urn:srf:article:019c51ec-24a0-7afd-c7f7-58615dbb1960"
                   data-teaser-meta-video="true"
-                  data-teaser-meta-published-at="2026-02-12T05:45:04+01:00"
-                  data-teaser-meta-published-at-permanent="2026-02-12T05:45:04+01:00"
-                  data-teaser-meta-modified-at="2026-02-12T05:45:04+01:00"
+                  data-teaser-meta-published-at="2026-02-17T05:53:59+01:00"
+                  data-teaser-meta-published-at-permanent="2026-02-17T05:53:59+01:00"
+                  data-teaser-meta-modified-at="2026-02-17T05:53:59+01:00"
+                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
+                >
+                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
+                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="collection__teaser-item js-teaser-item">
+            <a
+              href="#"
+              class="teaser js-teaser"
+              data-date-published="2026-02-16T20:51:01+01:00"
+              data-date-modified="2026-02-16T22:50:28+01:00"
+              data-source=""
+              data-urn="urn:srf:article:019c67f9-00e9-a55c-9086-02c4914621f2"
+              data-title="Mediziner Guido A. Zäch im Alter von 90 Jahren gestorben"
+              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
+              data-content-categories="News Schweiz"
+            >
+              <div class="teaser__medium">
+                <div
+                  class="image js-image js-image-lazyload"
+                  data-image-provider="rokka"
+                  data-image-id="d532f8"
+                  data-largest-loaded-version="320w"
+                >
+                  <picture
+                    ><source
+                      srcset="
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/d532f8.webp
+                      "
+                      type="image/webp"
+                    />
+                    <img
+                      alt=""
+                      class="image__img"
+                      loading="lazy"
+                      src="./sandbox-assets/static/cms/images/320ws/d532f8.webp"
+                    />
+                  </picture>
+                </div>
+              </div>
+
+              <div class="teaser__content" role="text">
+                <div class="teaser__text">
+                  <div class="teaser__kicker">
+                    <span class="teaser__kicker-text"
+                      >Paraplegiker-Stiftung</span
+                    >
+                  </div>
+
+                  <span class="teaser__title"
+                    >Mediziner Guido A. Zäch im Alter von 90 Jahren
+                    gestorben</span
+                  >
+
+                  <p class="teaser__lead">
+                    Als Gründer des Paraplegiker-Zentrums in Nottwil erreichte
+                    Zäch schweizweite Bekanntheit.
+                  </p>
+                </div>
+              </div>
+
+              <div class="teaser__extras">
+                <div
+                  class="teaser-meta js-teaser-meta teaser__meta"
+                  role="text"
+                  data-teaser-meta-source-id="urn:srf:article:019c67f9-00e9-a55c-9086-02c4914621f2"
+                  data-teaser-meta-video="true"
+                  data-teaser-meta-published-at="2026-02-16T20:51:01+01:00"
+                  data-teaser-meta-published-at-permanent="2026-02-16T20:51:01+01:00"
+                  data-teaser-meta-modified-at="2026-02-16T22:50:28+01:00"
+                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
+                >
+                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
+                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="collection__teaser-item js-teaser-item">
+            <a
+              href="#"
+              class="teaser js-teaser"
+              data-date-published="2026-02-16T21:01:20+01:00"
+              data-date-modified="2026-02-16T21:01:20+01:00"
+              data-source=""
+              data-urn="urn:srf:article:019c671f-caf7-c776-ced0-2760a774bf67"
+              data-title="Warum drängen Balkanstaaten in Donald Trumps «Friedensrat»?"
+              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
+              data-content-categories="News International"
+            >
+              <div class="teaser__medium">
+                <div
+                  class="image js-image js-image-lazyload"
+                  data-image-provider="rokka"
+                  data-image-id="7898c8"
+                  data-largest-loaded-version="320w"
+                >
+                  <picture
+                    ><source
+                      srcset="
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/7898c8.webp
+                      "
+                      type="image/webp"
+                    />
+                    <img
+                      alt=""
+                      class="image__img"
+                      loading="lazy"
+                      src="./sandbox-assets/static/cms/images/320ws/7898c8.webp"
+                    />
+                  </picture>
+                </div>
+              </div>
+
+              <div class="teaser__content" role="text">
+                <div class="teaser__text">
+                  <div class="teaser__kicker">
+                    <span class="teaser__kicker-text"
+                      >Beitritt zum «Board of Peace»</span
+                    >
+                  </div>
+
+                  <span class="teaser__title"
+                    >Warum drängen Balkanstaaten in Donald Trumps
+                    «Friedensrat»?</span
+                  >
+
+                  <p class="teaser__lead">
+                    Grosse europäische Länder winken ab. Dagegen wollen mehrere
+                    Balkan-Staaten ins «Board of Peace.» Was steckt dahinter?
+                  </p>
+                </div>
+              </div>
+
+              <div class="teaser__extras">
+                <div
+                  class="teaser-meta js-teaser-meta teaser__meta"
+                  role="text"
+                  data-teaser-meta-source-id="urn:srf:article:019c671f-caf7-c776-ced0-2760a774bf67"
+                  data-teaser-meta-video="true"
+                  data-teaser-meta-published-at="2026-02-16T21:01:20+01:00"
+                  data-teaser-meta-published-at-permanent="2026-02-16T21:01:20+01:00"
+                  data-teaser-meta-modified-at="2026-02-16T21:01:20+01:00"
+                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
+                >
+                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
+                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="collection__teaser-item js-teaser-item">
+            <a
+              href="#"
+              class="teaser js-teaser"
+              data-date-published="2026-02-16T18:12:33+01:00"
+              data-date-modified="2026-02-16T18:12:33+01:00"
+              data-source=""
+              data-urn="urn:srf:article:019c65f6-a75f-4171-3505-155eda5cef08"
+              data-title="Fergie wollte Epsteins Haushälterin werden"
+              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
+              data-content-categories="News Gesellschaft"
+            >
+              <div class="teaser__medium">
+                <div
+                  class="image js-image js-image-lazyload"
+                  data-image-provider="rokka"
+                  data-image-id="1ff690"
+                  data-largest-loaded-version="320w"
+                >
+                  <picture
+                    ><source
+                      srcset="
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/1ff690.webp
+                      "
+                      type="image/webp"
+                    />
+                    <img
+                      alt=""
+                      class="image__img"
+                      loading="lazy"
+                      src="./sandbox-assets/static/cms/images/320ws/1ff690.webp"
+                    />
+                  </picture>
+                </div>
+              </div>
+
+              <div class="teaser__content" role="text">
+                <div class="teaser__text">
+                  <div class="teaser__kicker">
+                    <span class="teaser__kicker-text"
+                      >Königshaus unter Druck</span
+                    >
+                  </div>
+
+                  <span class="teaser__title"
+                    >Fergie wollte Epsteins Haushälterin werden</span
+                  >
+
+                  <p class="teaser__lead">
+                    Neue Epstein-Details belasten Sarah Ferguson und bringen sie
+                    – mal wieder – in die Schlagzeilen.
+                  </p>
+                </div>
+              </div>
+
+              <div class="teaser__extras">
+                <div
+                  class="teaser-meta js-teaser-meta teaser__meta"
+                  role="text"
+                  data-teaser-meta-source-id="urn:srf:article:019c65f6-a75f-4171-3505-155eda5cef08"
+                  data-teaser-meta-audio="true"
+                  data-teaser-meta-published-at="2026-02-16T18:12:33+01:00"
+                  data-teaser-meta-published-at-permanent="2026-02-16T18:12:33+01:00"
+                  data-teaser-meta-modified-at="2026-02-16T18:12:33+01:00"
                   data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
                 >
                   <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
@@ -1581,7 +1369,7 @@
         <div
           class="collection__swipeable-controls js-collection-swipeable-controls h-element--hide"
           aria-hidden="true"
-          style="top: 217.727px"
+          style="top: 206.477px"
         >
           <span
             class="button button--icon-only collection__swipeable-button collection__swipeable-button--prev js-swipeable-control-left"
@@ -1627,7 +1415,7 @@
         <div class="search-header search-header--search-only">
           <div class="search-header__logo">
             <a
-              href="/"
+              href="#"
               class="main-logo search-header--search-only"
               aria-hidden="true"
               tabindex="-1"
@@ -1738,192 +1526,156 @@
           <div class="globalnav__groups">
             <ul class="globalnav__group" aria-label="Rubriken">
               <li class="globalnav__item">
-                <a class="globalnav-link globalnav-link--portal" href="/">
+                <a class="globalnav-link globalnav-link--portal" href="#">
                   <span class="globalnav-link__text">Home</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link globalnav-link--portal" href="/news">
+                <a class="globalnav-link globalnav-link--portal" href="#">
                   <span class="globalnav-link__text">News</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link globalnav-link--portal" href="/sport">
+                <a class="globalnav-link globalnav-link--portal" href="#">
                   <span class="globalnav-link__text">Sport</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link globalnav-link--portal" href="/meteo">
+                <a class="globalnav-link globalnav-link--portal" href="#">
                   <span class="globalnav-link__text">Meteo</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link globalnav-link--portal" href="/kultur">
+                <a class="globalnav-link globalnav-link--portal" href="#">
                   <span class="globalnav-link__text">Kultur</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link globalnav-link--portal" href="/wissen">
+                <a class="globalnav-link globalnav-link--portal" href="#">
                   <span class="globalnav-link__text">Wissen</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link globalnav-link--portal" href="/kids">
+                <a class="globalnav-link globalnav-link--portal" href="#">
                   <span class="globalnav-link__text">Kids</span>
                 </a>
               </li>
             </ul>
             <ul class="globalnav__group" aria-label="TV &amp; Streaming">
               <li class="globalnav__item">
-                <a class="globalnav-link" href="/play">
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Play SRF Mediathek</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link" href="./sandbox-assets/play/tv/live">
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Live TV</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/sport/resultcenter/results"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text"
                     >Sport-Livestreams &amp; Resultate</span
                   >
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/play/tv/programm/heute"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">TV-Programm</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/play/tv/themen/dokus--reportagen"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text"
                     >Dokus &amp; Reportagen</span
                   >
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/play/tv/themen/film"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Filme</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/play/tv/themen/serien"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Serien</span>
                 </a>
               </li>
             </ul>
             <ul class="globalnav__group" aria-label="Radio &amp; Podcast">
               <li class="globalnav__item">
-                <a class="globalnav-link" href="/audio">
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Audio &amp; Podcasts</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/audio/radio-srf-1-live-hoeren"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Live Radio</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link" href="/radio-programm">
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Radio-Programm</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link" href="./sandbox-assets/audio/themen">
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Podcast-Themen</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/audio/themen/hoerspiele-geschichten"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Hörspiele</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link" href="./sandbox-assets/audio/a-z">
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Alle SRF Podcasts</span>
                 </a>
               </li>
             </ul>
             <ul class="globalnav__group" aria-label="Weitere Angebote">
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/sendungen/school"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">SRF school</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link" href="/verkehrsinformationen">
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text"
                     >Verkehrsinfo &amp; Staumeldungen</span
                   >
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link" href="./sandbox-assets/meteo/radar">
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Niederschlagsradar</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/unternehmen/unternehmen/events"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text"
                     >Events &amp; Erlebnisse</span
                   >
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="/newsletter-uebersicht-srf-newsletter-abonnieren"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Newsletter</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/sendungen/archiv"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Archiv</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link"
-                  href="./sandbox-assets/sendungen/hallosrf"
-                >
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Hallo SRF!</span>
                 </a>
               </li>
               <li class="globalnav__item">
-                <a class="globalnav-link" href="/unternehmen">
+                <a class="globalnav-link" href="#">
                   <span class="globalnav-link__text">Über SRF</span>
                 </a>
               </li>
@@ -1938,10 +1690,7 @@
               aria-label="Radioseiten"
             >
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link globalnav-link--sub"
-                  href="/radio-srf-1"
-                >
+                <a class="globalnav-link globalnav-link--sub" href="#">
                   <img
                     class="globalnav-link__img"
                     src="./sandbox-assets/build/assets/radio-srf-1-square-BRF5hy-0.svg"
@@ -1952,10 +1701,7 @@
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link globalnav-link--sub"
-                  href="/radio-srf-2-kultur"
-                >
+                <a class="globalnav-link globalnav-link--sub" href="#">
                   <img
                     class="globalnav-link__img"
                     src="./sandbox-assets/build/assets/radio-srf-2-square-BnG0DiSc.svg"
@@ -1966,10 +1712,7 @@
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link globalnav-link--sub"
-                  href="/radio-srf-3"
-                >
+                <a class="globalnav-link globalnav-link--sub" href="#">
                   <img
                     class="globalnav-link__img"
                     src="./sandbox-assets/build/assets/radio-srf-3-square-Ds8liY9N.svg"
@@ -1980,10 +1723,7 @@
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link globalnav-link--sub"
-                  href="/radio-srf-4-news"
-                >
+                <a class="globalnav-link globalnav-link--sub" href="#">
                   <img
                     class="globalnav-link__img"
                     src="./sandbox-assets/build/assets/radio-srf-4-square-CPpwSzVl.svg"
@@ -1994,10 +1734,7 @@
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link globalnav-link--sub"
-                  href="/radio-srf-musikwelle"
-                >
+                <a class="globalnav-link globalnav-link--sub" href="#">
                   <img
                     class="globalnav-link__img"
                     src="./sandbox-assets/build/assets/radio-srf-musikwelle-square-BoII6AQN.svg"
@@ -2008,10 +1745,7 @@
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link globalnav-link--sub"
-                  href="/radio-srf-virus"
-                >
+                <a class="globalnav-link globalnav-link--sub" href="#">
                   <img
                     class="globalnav-link__img"
                     src="./sandbox-assets/build/assets/radio-srf-virus-square-DOEcWpsO.svg"
@@ -2022,10 +1756,7 @@
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link globalnav-link--sub"
-                  href="https://www.radioswissclassic.ch/de"
-                >
+                <a class="globalnav-link globalnav-link--sub" href="#">
                   <img
                     class="globalnav-link__img"
                     src="./sandbox-assets/build/assets/radio-swiss-classic-square-DXOgPz0h.svg"
@@ -2036,10 +1767,7 @@
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link globalnav-link--sub"
-                  href="https://www.radioswissjazz.ch/de"
-                >
+                <a class="globalnav-link globalnav-link--sub" href="#">
                   <img
                     class="globalnav-link__img"
                     src="./sandbox-assets/build/assets/radio-swiss-jazz-square-CXNcln6S.svg"
@@ -2050,10 +1778,7 @@
                 </a>
               </li>
               <li class="globalnav__item">
-                <a
-                  class="globalnav-link globalnav-link--sub"
-                  href="https://www.radioswisspop.ch/de"
-                >
+                <a class="globalnav-link globalnav-link--sub" href="#">
                   <img
                     class="globalnav-link__img"
                     src="./sandbox-assets/build/assets/radio-swiss-pop-square-BYHEtXvn.svg"
@@ -2072,102 +1797,56 @@
       <div class="footer__wrapper">
         <ul class="footer__navigation" data-referrer-track="srg_mod1=footer">
           <li class="footer__navigation-item">
-            <a
-              href="/website-und-apps-srf-apps"
-              title=""
-              class="footer__navigation-link"
-              >SRF Apps</a
-            >
+            <a href="#" title="" class="footer__navigation-link">SRF Apps</a>
           </li>
           <li class="footer__navigation-item">
-            <a
-              href="/von-a-bis-z-themenliste"
-              title=""
-              class="footer__navigation-link"
-              >Themenliste</a
-            >
+            <a href="#" title="" class="footer__navigation-link">Themenliste</a>
           </li>
           <li class="footer__navigation-item">
-            <a href="/korrekturen" title="" class="footer__navigation-link"
-              >Korrekturen</a
-            >
+            <a href="#" title="" class="footer__navigation-link">Korrekturen</a>
           </li>
           <li class="footer__navigation-item">
-            <a
-              href="https://jobs.srf.ch/de/startseite/"
-              title=""
-              class="footer__navigation-link"
-              target="_blank"
+            <a href="#" title="" class="footer__navigation-link" target="_blank"
               >Jobs</a
             >
           </li>
           <li class="footer__navigation-item">
-            <a
-              href="/hilfe-fragen-antworten-hilfestellungen"
-              title=""
-              class="footer__navigation-link"
-              >Hilfe</a
-            >
+            <a href="#" title="" class="footer__navigation-link">Hilfe</a>
           </li>
           <li class="footer__navigation-item">
-            <a href="/hilfe-kontakt" title="" class="footer__navigation-link"
-              >Kontakt</a
-            >
+            <a href="#" title="" class="footer__navigation-link">Kontakt</a>
           </li>
           <li class="footer__navigation-item">
-            <a
-              href="https://medien.srf.ch"
-              title=""
-              class="footer__navigation-link"
-              target="_blank"
+            <a href="#" title="" class="footer__navigation-link" target="_blank"
               >Medien</a
             >
           </li>
           <li class="footer__navigation-item">
-            <a
-              href="/ueber-srf-impressum"
-              title=""
-              class="footer__navigation-link"
-              >Impressum</a
-            >
+            <a href="#" title="" class="footer__navigation-link">Impressum</a>
           </li>
           <li class="footer__navigation-item">
-            <a
-              href="/rechtliches-datenschutzerklaerung"
-              title=""
-              class="footer__navigation-link"
+            <a href="#" title="" class="footer__navigation-link"
               >Datenschutz­erklärung</a
             >
           </li>
           <li class="footer__navigation-item">
-            <a
-              href="/rechtliches"
-              title=""
-              class="footer__navigation-link js-cmp-settings"
+            <a href="#" title="" class="footer__navigation-link js-cmp-settings"
               >Datenschutz-Einstellungen</a
             >
           </li>
           <li class="footer__navigation-item">
-            <a
-              href="/rechtliches-nutzungsbedingungen"
-              title=""
-              class="footer__navigation-link"
+            <a href="#" title="" class="footer__navigation-link"
               >Nutzungs­bedingungen</a
             >
           </li>
           <li class="footer__navigation-item">
-            <a
-              href="https://www.playsuisse.ch"
-              title=""
-              class="footer__navigation-link"
-              >Play Suisse</a
-            >
+            <a href="#" title="" class="footer__navigation-link">Play Suisse</a>
           </li>
         </ul>
 
         <div class="footer__imprint">
           <div class="footer__imprint-content">
-            <a href="https://www.srgssr.ch/" target="_blank">
+            <a href="#" target="_blank">
               <img
                 class="footer__logo"
                 src="./sandbox-assets/build/assets/srgssr_logo-B1R41pdd.svg"
@@ -2184,32 +1863,19 @@
 
           <ul class="footer__imprint-links">
             <li class="footer__bu-link-item">
-              <a href="https://www.rts.ch/" title="" class="footer__bu-link"
-                ><span>RTS</span></a
-              >
+              <a href="#" title="" class="footer__bu-link"><span>RTS</span></a>
             </li>
             <li class="footer__bu-link-item">
-              <a href="https://www.rsi.ch/" title="" class="footer__bu-link"
-                ><span>RSI</span></a
-              >
+              <a href="#" title="" class="footer__bu-link"><span>RSI</span></a>
             </li>
             <li class="footer__bu-link-item">
-              <a href="https://www.rtr.ch" title="" class="footer__bu-link"
-                ><span>RTR</span></a
-              >
+              <a href="#" title="" class="footer__bu-link"><span>RTR</span></a>
             </li>
             <li class="footer__bu-link-item">
-              <a
-                href="https://www.swissinfo.ch/"
-                title=""
-                class="footer__bu-link"
-                ><span>SWI</span></a
-              >
+              <a href="#" title="" class="footer__bu-link"><span>SWI</span></a>
             </li>
             <li class="footer__bu-link-item">
-              <a href="https://www.3sat.de" title="" class="footer__bu-link"
-                ><span>3SAT</span></a
-              >
+              <a href="#" title="" class="footer__bu-link"><span>3SAT</span></a>
             </li>
           </ul>
         </div>
@@ -2258,7 +1924,7 @@
           <div class="modal__content-wrapper">
             <div class="search-header">
               <div class="search-header__logo">
-                <a href="/" class="main-logo" aria-hidden="true" tabindex="-1">
+                <a href="#" class="main-logo" aria-hidden="true" tabindex="-1">
                   <span class="h-offscreen"
                     >Schweizer Radio und Fernsehen, zur Startseite</span
                   >
@@ -2364,7 +2030,7 @@
                       Melden Sie sich an, um mitzudiskutieren, Ihre Inhalte zu
                       personalisieren und von weiteren Vorteilen zu
                       profitieren.<a
-                        href="https://www.srgssr.ch/de/login"
+                        href="#"
                         class="srg-login-call-to-action__link"
                         target="_blank"
                         rel="noreferrer"
@@ -2409,159 +2075,114 @@
               <div class="globalnav__groups">
                 <ul class="globalnav__group" aria-label="Rubriken">
                   <li class="globalnav__item">
-                    <a class="globalnav-link globalnav-link--portal" href="/">
+                    <a class="globalnav-link globalnav-link--portal" href="#">
                       <span class="globalnav-link__text">Home</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--portal"
-                      href="/news"
-                    >
+                    <a class="globalnav-link globalnav-link--portal" href="#">
                       <span class="globalnav-link__text">News</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--portal"
-                      href="/sport"
-                    >
+                    <a class="globalnav-link globalnav-link--portal" href="#">
                       <span class="globalnav-link__text">Sport</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--portal"
-                      href="/meteo"
-                    >
+                    <a class="globalnav-link globalnav-link--portal" href="#">
                       <span class="globalnav-link__text">Meteo</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--portal"
-                      href="/kultur"
-                    >
+                    <a class="globalnav-link globalnav-link--portal" href="#">
                       <span class="globalnav-link__text">Kultur</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--portal"
-                      href="/wissen"
-                    >
+                    <a class="globalnav-link globalnav-link--portal" href="#">
                       <span class="globalnav-link__text">Wissen</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--portal"
-                      href="/kids"
-                    >
+                    <a class="globalnav-link globalnav-link--portal" href="#">
                       <span class="globalnav-link__text">Kids</span>
                     </a>
                   </li>
                 </ul>
                 <ul class="globalnav__group" aria-label="TV &amp; Streaming">
                   <li class="globalnav__item">
-                    <a class="globalnav-link" href="/play">
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text"
                         >Play SRF Mediathek</span
                       >
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/play/tv/live"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Live TV</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/sport/resultcenter/results"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text"
                         >Sport-Livestreams &amp; Resultate</span
                       >
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/play/tv/programm/heute"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">TV-Programm</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/play/tv/themen/dokus--reportagen"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text"
                         >Dokus &amp; Reportagen</span
                       >
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/play/tv/themen/film"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Filme</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/play/tv/themen/serien"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Serien</span>
                     </a>
                   </li>
                 </ul>
                 <ul class="globalnav__group" aria-label="Radio &amp; Podcast">
                   <li class="globalnav__item">
-                    <a class="globalnav-link" href="/audio">
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text"
                         >Audio &amp; Podcasts</span
                       >
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/audio/radio-srf-1-live-hoeren"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Live Radio</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a class="globalnav-link" href="/radio-programm">
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Radio-Programm</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/audio/themen"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Podcast-Themen</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/audio/themen/hoerspiele-geschichten"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Hörspiele</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a class="globalnav-link" href="./sandbox-assets/audio/a-z">
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text"
                         >Alle SRF Podcasts</span
                       >
@@ -2570,66 +2191,48 @@
                 </ul>
                 <ul class="globalnav__group" aria-label="Weitere Angebote">
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/sendungen/school"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">SRF school</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a class="globalnav-link" href="/verkehrsinformationen">
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text"
                         >Verkehrsinfo &amp; Staumeldungen</span
                       >
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/meteo/radar"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text"
                         >Niederschlagsradar</span
                       >
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/unternehmen/unternehmen/events"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text"
                         >Events &amp; Erlebnisse</span
                       >
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="/newsletter-uebersicht-srf-newsletter-abonnieren"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Newsletter</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/sendungen/archiv"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Archiv</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link"
-                      href="./sandbox-assets/sendungen/hallosrf"
-                    >
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Hallo SRF!</span>
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a class="globalnav-link" href="/unternehmen">
+                    <a class="globalnav-link" href="#">
                       <span class="globalnav-link__text">Über SRF</span>
                     </a>
                   </li>
@@ -2646,10 +2249,7 @@
                   aria-label="Radioseiten"
                 >
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--sub"
-                      href="/radio-srf-1"
-                    >
+                    <a class="globalnav-link globalnav-link--sub" href="#">
                       <img
                         class="globalnav-link__img"
                         src="./sandbox-assets/build/assets/radio-srf-1-square-BRF5hy-0.svg"
@@ -2660,10 +2260,7 @@
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--sub"
-                      href="/radio-srf-2-kultur"
-                    >
+                    <a class="globalnav-link globalnav-link--sub" href="#">
                       <img
                         class="globalnav-link__img"
                         src="./sandbox-assets/build/assets/radio-srf-2-square-BnG0DiSc.svg"
@@ -2676,10 +2273,7 @@
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--sub"
-                      href="/radio-srf-3"
-                    >
+                    <a class="globalnav-link globalnav-link--sub" href="#">
                       <img
                         class="globalnav-link__img"
                         src="./sandbox-assets/build/assets/radio-srf-3-square-Ds8liY9N.svg"
@@ -2690,10 +2284,7 @@
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--sub"
-                      href="/radio-srf-4-news"
-                    >
+                    <a class="globalnav-link globalnav-link--sub" href="#">
                       <img
                         class="globalnav-link__img"
                         src="./sandbox-assets/build/assets/radio-srf-4-square-CPpwSzVl.svg"
@@ -2704,10 +2295,7 @@
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--sub"
-                      href="/radio-srf-musikwelle"
-                    >
+                    <a class="globalnav-link globalnav-link--sub" href="#">
                       <img
                         class="globalnav-link__img"
                         src="./sandbox-assets/build/assets/radio-srf-musikwelle-square-BoII6AQN.svg"
@@ -2720,10 +2308,7 @@
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--sub"
-                      href="/radio-srf-virus"
-                    >
+                    <a class="globalnav-link globalnav-link--sub" href="#">
                       <img
                         class="globalnav-link__img"
                         src="./sandbox-assets/build/assets/radio-srf-virus-square-DOEcWpsO.svg"
@@ -2734,10 +2319,7 @@
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--sub"
-                      href="https://www.radioswissclassic.ch/de"
-                    >
+                    <a class="globalnav-link globalnav-link--sub" href="#">
                       <img
                         class="globalnav-link__img"
                         src="./sandbox-assets/build/assets/radio-swiss-classic-square-DXOgPz0h.svg"
@@ -2750,10 +2332,7 @@
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--sub"
-                      href="https://www.radioswissjazz.ch/de"
-                    >
+                    <a class="globalnav-link globalnav-link--sub" href="#">
                       <img
                         class="globalnav-link__img"
                         src="./sandbox-assets/build/assets/radio-swiss-jazz-square-CXNcln6S.svg"
@@ -2764,10 +2343,7 @@
                     </a>
                   </li>
                   <li class="globalnav__item">
-                    <a
-                      class="globalnav-link globalnav-link--sub"
-                      href="https://www.radioswisspop.ch/de"
-                    >
+                    <a class="globalnav-link globalnav-link--sub" href="#">
                       <img
                         class="globalnav-link__img"
                         src="./sandbox-assets/build/assets/radio-swiss-pop-square-BYHEtXvn.svg"
@@ -2829,37 +2405,6 @@
       </div>
     </div>
 
-    <span
-      id="config__js"
-      style="display: none"
-      data-business_unit="srf"
-      data-environment="prod"
-      data-representation="web"
-      data-seo-url="https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit"
-      data-analytics-enabled="1"
-      data-kameleoon-enabled=""
-      data-survey-gizmo-enabled="true"
-      data-analytics-survey-gizmo-beacon="OTAwMjg5MTUtNDIzNzJmNTY3NDA5NTA5ZDQ1NzA4Mzg5MDMxZmNhZDMyN2I3OGVjNGUyM2FkY2U0ZWE="
-      data-analytics-webtrekk-value-object='{"staticUrl":"https:\/\/data.srf.ch\/292330999892453\/wt?p=438,srf.web.srf.ch.news.dialog.fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit-1cxj6nnwgypdkmfmdtlrwg,0,0,0,0,0,0,0,0&amp;cg1=SRF&amp;cg2=web&amp;cg3=srf.ch&amp;cg5=Humanit%C3%A4re+Krisen+ohne+Aufmerksamkeit&amp;cg6=News&amp;cg7=dialog&amp;cg10=019c1df0-9197-d8fd-6802-be408e31139d&amp;cp1=Artikel&amp;cp3=dialog%281%29%3Bhtml%282%29%3Bimage%281%29%3BtextBox%281%29&amp;cp5=international%3Bcommunity%3BUNM_give_me_perspective%3Bteam%3A1CWDp4MVNnWC25AsmdTReS&amp;cp14=News&amp;cp15=dialog&amp;cp31=2&amp;cp32=2026.02.10&amp;cp33=20260210&amp;cp34=09%3A57&amp;cp35=0957&amp;cp36=202602100957&amp;cp52=fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit-1cxj6nnwgypdkmfmdtlrwg","config":{"trackId":"292330999892453","trackDomain":"data.srf.ch","cookie":3,"tabBrowsing":false,"execRTA":false,"execCDB":false,"useCDBCache":false,"useCDBScript":false,"forceHTTPS":true},"pageconfig":{"contentId":"srf.web.srf.ch.news.dialog.fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit-1cxj6nnwgypdkmfmdtlrwg","domain":"REGEXP:^([a-z1-9]*)([.]?)srf[.]ch$","linkTrack":"standard","heatmap":false,"form":false,"executePluginFunction":null},"contentGroup":{"1":"SRF","2":"web","3":"srf.ch","10":"019c1df0-9197-d8fd-6802-be408e31139d","5":"Humanit\u00e4re Krisen ohne Aufmerksamkeit","6":"News","7":"dialog","8":null,"9":null},"customParameter":{"1":"Artikel","52":"fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit-1cxj6nnwgypdkmfmdtlrwg","14":"News","15":"dialog","16":null,"17":null,"3":"dialog(1);html(2);image(1);textBox(1)","5":"international;community;UNM_give_me_perspective;team:1CWDp4MVNnWC25AsmdTReS","userNeed":"give_me_perspective","team":"1CWDp4MVNnWC25AsmdTReS","32":"2026.02.10","33":"20260210","34":"09:57","35":"0957","36":"202602100957","31":"2"},"other":{"rubric":"dialog","author":"Antoine Schaub \/ RTS"}}'
-      data-analytics-udp-value-object='{"content_publication_datetime":"2026-02-10T09:57:38+01:00","content_modification_datetime":"2026-02-10T09:57:38+01:00","content_page_elements":"dialog(1);html(2);image(1);textBox(1)","navigation_level_1":"News","navigation_level_2":"dialog","navigation_level_3":null,"navigation_level_4":null,"page_urn":"urn:srf:article:019c1df0-9197-d8fd-6802-be408e31139d","business_unit":"srf","content_title":"fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit-1cxj6nnwgypdkmfmdtlrwg","content_title_pretty":"Humanit\u00e4re Krisen ohne Aufmerksamkeit","content_id":"019c1df0-9197-d8fd-6802-be408e31139d","content_page_type":"Artikel","content_publication_version":"019c46c5-52ca-b57f-b45c-16ec46d7a329","content_category_1":"News","content_category_2":"dialog","content_category_3":null,"content_category_4":null,"schema_version":"0.1.0","type":"page_view","product":"web","backend_system":"cms"}'
-      data-analytics-webtrekk-survey-gizmo-value-object='{"params":{"content_publication_date":"2026.02.10","content_publication_date_concatenated":"20260210","content_publication_time":"09:57","content_publication_time_concatenated":"0957","content_publication_datetime_concatenated":"202602100957","content_publication_datetime":"2026-02-10T09:57:38+01:00","content_modification_datetime":"2026-02-10T09:57:38+01:00","content_elapsed_since_publication":"2","content_page_elements":"dialog(1);html(2);image(1);textBox(1)","content_tags_subject":"international;community","navigation_level_1":"News","navigation_level_2":"dialog","navigation_level_3":null,"navigation_level_4":null,"navigation_bu_distributer":"SRF","navigation_property_type":"web","navigation_app_site_name":"srf.ch","page_urn":"urn:srf:article:019c1df0-9197-d8fd-6802-be408e31139d","content_title":"fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit-1cxj6nnwgypdkmfmdtlrwg","content_title_pretty":"Humanit\u00e4re Krisen ohne Aufmerksamkeit","content_id":"srf.web.srf.ch.news.dialog.fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit-1cxj6nnwgypdkmfmdtlrwg","content_page_type":"Artikel","content_publication_version":"019c46c5-52ca-b57f-b45c-16ec46d7a329","content_category_1":"News","content_category_2":"dialog","content_category_3":null,"content_category_4":null}}'
-      data-udp-endpoints='{"tracking_host":"https:\/\/api.datahub-srgssr.ch"}'
-      data-rokka-url="./sandbox-assets/static/cms/images"
-      data-il-image-service-url="https://il.srf.ch/images"
-      data-il-base-url="https://il.srf.ch"
-      data-srg-login='{"authority":"https:\/\/account.srgssr.ch","clientId":"2f4600b4-51b4-4788-957e-a12c6cc3536c","scopes":"openid email roles profile"}'
-      data-pillarbox-player-il-host="il.srgssr.ch"
-      data-clickjacking="true"
-    ></span>
-
-    <noscript>
-      <img
-        class="h-offscreen"
-        src="https://data.srf.ch/292330999892453/wt?p=438,srf.web.srf.ch.news.dialog.fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit-1cxj6nnwgypdkmfmdtlrwg,0,0,0,0,0,0,0,0&cg1=SRF&cg2=web&cg3=srf.ch&cg5=Humanit%C3%A4re+Krisen+ohne+Aufmerksamkeit&cg6=News&cg7=dialog&cg10=019c1df0-9197-d8fd-6802-be408e31139d&cp1=Artikel&cp3=dialog%281%29%3Bhtml%282%29%3Bimage%281%29%3BtextBox%281%29&cp5=international%3Bcommunity%3BUNM_give_me_perspective%3Bteam%3A1CWDp4MVNnWC25AsmdTReS&cp14=News&cp15=dialog&cp31=2&cp32=2026.02.10&cp33=20260210&cp34=09%3A57&cp35=0957&cp36=202602100957&cp52=fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit-1cxj6nnwgypdkmfmdtlrwg"
-        alt=""
-      />
-    </noscript>
-
     <style>
       #flying-focus {
         position: absolute;
@@ -2894,6 +2439,6 @@
         }
       }
     </style>
-    <div id="usercentrics-root" data-created-at="1770901131949" style=""></div>
+    <div id="usercentrics-root" data-created-at="1771342350160" style=""></div>
   </body>
 </html>

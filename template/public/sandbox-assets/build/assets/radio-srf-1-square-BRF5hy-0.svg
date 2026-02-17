@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.17 179.17">
-    <defs>
-        <style>.cls-1{fill:#ea6716;fill-rule:evenodd;}.cls-2{fill:#fff;}</style>
-    </defs>
-    <path class="cls-1" d="M0,0V179.17H179.17V0Z"/>
-    <rect class="cls-2" x="70.88" y="30.6" width="37.41" height="117.97"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.17 179.17"><path d="M0 0v179.17h179.17V0Z" style="fill:#ea6716;fill-rule:evenodd"/><path d="M70.88 30.6h37.41v117.97H70.88z" style="fill:#fff"/></svg>
