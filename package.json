@@ -6,7 +6,8 @@
   "scripts": {
     "template": "node scripts/generate-template.js",
     "theme": "node scripts/generate-theme.js",
-    "dev": "vite dev"
+    "dev": "vite dev",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,11 @@
     "@vitejs/plugin-react": "^5.1.4",
     "prettier": "^3.8.1",
     "puppeteer": "^24.37.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "undici": "^6.0.0",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "vite-plugin-html": "^3.2.2",
+    "vitest": "^4.0.18"
   }
 }

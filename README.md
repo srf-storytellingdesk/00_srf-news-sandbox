@@ -18,3 +18,11 @@ Sandbox Generator for SRF Sandbox including
 - Run `pnpm theme`
 - Copy `theme-override/themeVariables.scss` to `src/asset/styles/cmsOverrides/themeVariables.scss` of SRF news template
 
+## Copy to template
+
+```node
+cp ./template/index.html ../00_srf-news-template/index.html
+cp -R ./template/public/sandbox-assets ../00_srf-news-template/public
+
+cp ./theme-override/themeVariables.scss ../00_srf-news-template/src/assets/styles/cmsOverrides
+```

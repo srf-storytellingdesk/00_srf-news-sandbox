@@ -8,11 +8,14 @@ import { fileURLToPath } from "node:url";
 import prettier from "prettier";
 import {
   mergeAllCssFiles,
-  pointAssetUrlsToSandbox,
+  pointSrcAndHrefUrlsToSandbox,
+  getUsedClassesFromHtml,
 } from "./utils/file-helper.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const URL =
+  "https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit";
 const TIME_TO_WAIT_FOR_DYNAMIC_CONTENT = 5000; // in milliseconds
 
 const DELETE_SELECTORS = [
@@ -21,8 +24,13 @@ const DELETE_SELECTORS = [
   'link[as="script"]', // no preloading of js files
   'link[crossorigin="use-credentials"]', // no manifests needed
   '[data-js-plugin="dynamic-promo-banner"]', // no promo stuff needed
+  "[style^='display: none']", // remove hidden elements (often placeholders for lazy loading or ads)
+  "noscript", // no fallback content for non-js users
+  "#config__js",
 ];
-
+const PREPEND_SELECTORS = {
+  "main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
+};
 const TEXT_REPLACEMENTS = {
   title: "{{ARTICLE_TITLE}}",
   '[data-news-landmark="article-content"]': "{{ARTICLE_CONTENT}}",
@@ -31,33 +39,24 @@ const TEXT_REPLACEMENTS = {
   ".article-author__name span[itemprop='name']": "Example Author Name",
   ".article-lead": "",
 };
-
 const MOUSTACHE_REPLACEMENTS = {
+  ARTICLE_TITLE: "<%= title %>",
   ARTICLE_CONTENT: await fs.readFile(
     path.resolve(__dirname, "..", "template", "embed.html"),
     "utf8",
   ),
-  ARTICLE_TITLE: "<%= title %>",
+  TOP_MEDIA_ELEMENT: await fs.readFile(
+    path.resolve(__dirname, "..", "template", "tme.html"),
+    "utf8",
+  ),
 };
 
-const url =
-  process.argv[2] ||
-  "https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit";
-const publicDir = process.argv[3] || "./template/public";
+const PUBLIC_DIR = "./template/public";
+const OUTPUT_DIR = "sandbox-assets";
+const CSS_FILE_NAME = "merged.css";
 
-const outputDir = process.argv[4] || "sandbox-assets";
-
-const cssFileName = process.argv[5] || "merged.css";
-
-if (!url) {
-  console.error(
-    "Usage: node scripts/fetch-all-js-puppeteer.js <URL> <publicDir> <outputDir> <cssFileName>",
-  );
-  process.exit(1);
-}
-
-const outputDirPath = path.join(publicDir, outputDir);
-await fs.mkdir(publicDir, { recursive: true });
+const outputDirPath = path.join(PUBLIC_DIR, OUTPUT_DIR);
+await fs.mkdir(PUBLIC_DIR, { recursive: true });
 await fs.mkdir(outputDirPath, {
   recursive: true,
 });
@@ -73,72 +72,59 @@ await Promise.all(
 const browser = await puppeteer.launch();
 const page = await browser.newPage();
 
-const cssSeen = new Set();
-const cssFiles = [];
+const assetSeen = new Set();
+const assetTypes = [
+  {
+    test: (ct, url) => ct.includes("css") || url.match(/\.css(\?|$)/),
+    ext: "css",
+    encoding: "utf8",
+  },
+  {
+    test: (ct, url) =>
+      url.match(/\.(png|jpe?g|gif|webp|svg|avif|bmp|ico)(\?|$)/i),
+    ext: "img",
+  },
+  // {
+  //   test: (ct, url) =>
+  //     ct.startsWith("font/") ||
+  //     ct.includes("woff") ||
+  //     ct.includes("truetype") ||
+  //     ct.includes("opentype") ||
+  //     url.match(/\.(woff2?|ttf|otf|eot)(\?|$)/i),
+  //   ext: "font",
+  // },
+];
 
 page.on("response", async (response) => {
   try {
     const reqUrl = response.url();
     const ct = response.headers()["content-type"] || "";
-    if (reqUrl.includes("base64,")) return;
-    if (ct.includes("css") || reqUrl.match(/\.css(\?|$)/)) {
-      // Download CSS
-      if (cssSeen.has(reqUrl)) return;
-      cssSeen.add(reqUrl);
-      const css = await response.buffer();
-      // Preserve directory structure relative to the domain
-      let urlPath = reqUrl.replace(/^https?:\/\/[\w\.-]+/, "");
-      if (urlPath.startsWith("/")) urlPath = urlPath.slice(1);
-      // Remove query string
-      urlPath = urlPath.split("?")[0];
-      const outPath = path.join(outputDirPath, urlPath);
-      await fs.mkdir(path.dirname(outPath), { recursive: true });
-      await fs.writeFile(outPath, css, { encoding: "utf8" });
-      cssFiles.push(urlPath);
-      console.log("Saved CSS:", outPath);
-      return;
-    }
-
-    // Download images (common types)
-    if (
-      ct.startsWith("image/") ||
-      reqUrl.match(/\.(png|jpe?g|gif|webp|svg|avif|bmp|ico)(\?|$)/i)
-    ) {
-      let urlPath = reqUrl.replace(/^https?:\/\/[\w\.-]+/, "");
-      if (urlPath.startsWith("/")) urlPath = urlPath.slice(1);
-      urlPath = urlPath.split("?")[0];
-      const outPath = path.join(outputDirPath, urlPath);
-      await fs.mkdir(path.dirname(outPath), { recursive: true });
-      const img = await response.buffer();
-      await fs.writeFile(outPath, img);
-      console.log("Saved image:", outPath);
-      return;
-    }
-
-    // Download fonts (woff, woff2, ttf, otf, eot, font/ content-type)
-    if (
-      ct.startsWith("font/") ||
-      ct.includes("woff") ||
-      ct.includes("truetype") ||
-      ct.includes("opentype") ||
-      reqUrl.match(/\.(woff2?|ttf|otf|eot)(\?|$)/i)
-    ) {
-      let urlPath = reqUrl.replace(/^https?:\/\/[\w\.-]+/, "");
-      if (urlPath.startsWith("/")) urlPath = urlPath.slice(1);
-      urlPath = urlPath.split("?")[0];
-      const outPath = path.join(outputDirPath, urlPath);
-      await fs.mkdir(path.dirname(outPath), { recursive: true });
-      const font = await response.buffer();
-      await fs.writeFile(outPath, font);
-      console.log("Saved font:", outPath);
-      return;
+    if (reqUrl.toString().includes("base64,")) return;
+    for (const type of assetTypes) {
+      if (type.test(ct, reqUrl)) {
+        if (assetSeen.has(reqUrl)) return;
+        assetSeen.add(reqUrl);
+        let urlPath = reqUrl.replace(/^https?:\/\/[\w\.-]+/, "");
+        if (urlPath.startsWith("/")) urlPath = urlPath.slice(1);
+        urlPath = urlPath.split("?")[0];
+        const outPath = path.join(outputDirPath, urlPath);
+        await fs.mkdir(path.dirname(outPath), { recursive: true });
+        const data = await response.buffer();
+        await fs.writeFile(
+          outPath,
+          data,
+          type.encoding ? { encoding: type.encoding } : undefined,
+        );
+        console.log(`Saved ${type.ext}:`, outPath);
+        return;
+      }
     }
   } catch (e) {
-    console.warn("Error saving CSS:", e.message);
+    console.warn("Error saving asset:", e.message);
   }
 });
 
-await page.goto(url, { waitUntil: "networkidle2" });
+await page.goto(URL, { waitUntil: "networkidle2" });
 // Wait longer for dynamic content
 await new Promise((resolve) =>
   setTimeout(resolve, TIME_TO_WAIT_FOR_DYNAMIC_CONTENT),
@@ -171,31 +157,51 @@ await page.evaluate((selectors) => {
 }, DELETE_SELECTORS);
 
 // Perform replacements based on TEXT_REPLACEMENTS
-await page.evaluate((replacements) => {
-  for (const [selector, html] of replacements) {
-    const el = document.querySelector(selector);
-    if (el) el.textContent = html;
-  }
-}, Object.entries(TEXT_REPLACEMENTS));
+await page.evaluate(
+  ({ replacements, inserts }) => {
+    for (const [selector, text] of replacements) {
+      const el = document.querySelector(selector);
+      if (el) el.textContent = text;
+    }
+    for (const [selector, text] of inserts) {
+      const el = document.querySelector(selector);
+      if (el) {
+        const textNode = document.createTextNode(text);
+        el.prepend(textNode);
+      }
+    }
+  },
+  {
+    replacements: Object.entries(TEXT_REPLACEMENTS),
+    inserts: Object.entries(PREPEND_SELECTORS),
+  },
+);
 
-// Perform CSS merging (remove all stylesheet links and create a new one)
 await page.evaluate((cssHref) => {
+  // Perform CSS merging (remove all stylesheet links and create a new one)
   document
     .querySelectorAll("link[rel='stylesheet']")
     .forEach((el) => el.remove());
-
   const mergedCssLink = document.createElement("link");
   mergedCssLink.rel = "stylesheet";
   mergedCssLink.href = cssHref;
   document.head.appendChild(mergedCssLink);
-}, `./${outputDir}/${cssFileName}`);
+
+  // remove hyperlinks
+  document.querySelectorAll("a[href]").forEach((a) => {
+    a.setAttribute("href", "#");
+  });
+}, `/${OUTPUT_DIR}/${CSS_FILE_NAME}`);
 
 // Save the final HTML after all JS and replacements, but only include merged.css
 let html = await page.content();
 
 // rewrite urls to point to the sandbox-assets directory
 // (example: /deeply/nested/srf-apple-touch-icon-BRxTgjQQ.png => ./sandbox-assets/deeply/nested/srf-apple-touch-icon-BRxTgjQQ.png)
-html = pointAssetUrlsToSandbox(html);
+html = pointSrcAndHrefUrlsToSandbox(html);
+
+// list classes used in the HTML
+const classSet = getUsedClassesFromHtml(html);
 
 // Perform replacements based on MOUSTACHE_REPLACEMENTS
 for (const [placeholder, replacement] of Object.entries(
@@ -221,6 +227,6 @@ console.log("Saved HTML:", htmlPath);
 await browser.close();
 
 // Merge all CSS files in outputDirPath
-await mergeAllCssFiles(outputDirPath, cssFileName);
+await mergeAllCssFiles(outputDirPath, CSS_FILE_NAME, classSet);
 
 console.log("Done.");

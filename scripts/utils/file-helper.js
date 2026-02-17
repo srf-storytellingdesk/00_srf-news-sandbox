@@ -8,6 +8,11 @@ async function removeMergedCssFiles(dir, mergedName) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       await removeMergedCssFiles(fullPath, mergedName);
+      // remove directory if empty after processing
+      const remainingEntries = await fs.readdir(fullPath);
+      if (remainingEntries.length === 0) {
+        await fs.rmdir(fullPath);
+      }
     } else if (
       entry.isFile() &&
       entry.name.endsWith(".css") &&
@@ -40,18 +45,21 @@ async function collectCssFiles(dir, mergedName) {
 export async function mergeAllCssFiles(
   dir,
   mergedName,
+  classesUsed = new Set(),
   removeMergedFiles = true,
 ) {
   const cssFiles = await collectCssFiles(dir, mergedName);
   let merged = "";
   for (const file of cssFiles) {
     merged += `/* --- ${path.relative(dir, file)} --- */\n`;
-    merged += await fs.readFile(file, "utf8");
+    let fileContent = await fs.readFile(file, "utf8");
+    // fileContent = removeUnusedClasses(fileContent, classesUsed);
+    fileContent = pointAssetUrlsToSandbox(fileContent);
+    merged += fileContent;
     merged += "\n";
   }
   const mergedPath = path.join(dir, mergedName);
-  merged = pointAssetUrlsToSandbox(merged);
-  merged = pointCssAssetUrlsToSandbox(merged);
+
   await fs.writeFile(mergedPath, merged, { encoding: "utf8" });
   console.log("Merged CSS written to:", mergedPath);
 
@@ -60,24 +68,71 @@ export async function mergeAllCssFiles(
   }
 }
 
-export function pointAssetUrlsToSandbox(code) {
-  return code.replace(
-    /(["'])\/([^"']*?)\/([^"']*?)\1/g,
-    (match, quote, path1, filename) => {
-      const newPath = `./sandbox-assets/${path1}/${filename}`;
-      return `${quote}${newPath}${quote}`;
-    },
+export function getUsedClassesFromHtml(htmlContent) {
+  const classSet = new Set();
+  htmlContent.replace(/class=["']([^"']+)["']/g, (_, classList) => {
+    classList.split(/\s+/).forEach((cls) => classSet.add(cls));
+  });
+  return classSet;
+}
+
+export function getDefinedClasses(cssContent) {
+  const cssClasses = new Set();
+  cssContent.replace(/\.([a-zA-Z0-9_-]+)\b/g, (_, className) =>
+    cssClasses.add(className),
+  );
+  return cssClasses;
+}
+
+export function removeUnusedClasses(cssContent, classesUsed) {
+  const cssClasses = getDefinedClasses(cssContent);
+  cssClasses.forEach((cls) => {
+    if (!classesUsed.has(cls)) {
+      console.log(`Class .${cls} is in CSS but not used in HTML, removing...`);
+      // Match class block, minified or not (no dependency on trailing newline)
+      const classPattern = new RegExp(`\\.${cls}[^{{}]*{[^}]*}`, "g");
+      cssContent = cssContent.replace(classPattern, "");
+    }
+  });
+  return cssContent;
+}
+
+export function pointAssetUrlsToSandbox(input) {
+  return String(input).replace(
+    // Match real URL-like paths:
+    // - optional leading slash
+    // - at least one "/" segment
+    // - no whitespace
+    // - not already sandbox-prefixed
+    /(^|[^A-Za-z0-9/_-])\/?(?!sandbox-assets\/)([A-Za-z0-9._-]+(?:\/[A-Za-z0-9._-]+)+)/g,
+    (_, pre, path) => `${pre}../sandbox-assets/${path}`,
   );
 }
 
-export function pointCssAssetUrlsToSandbox(css) {
-  // Accept Buffer or string
-  if (Buffer.isBuffer(css)) css = css.toString("utf8");
-  return css.replace(
-    /(["']?)\/([^"']*?)\/([^"']*?)\1/g,
-    (match, quote, path1, filename) => {
-      const newPath = `./sandbox-assets/${path1}/${filename}`;
-      return `${quote}${newPath}${quote}`;
-    },
+export function pointSrcAndHrefUrlsToSandbox(input) {
+  let out = String(input).replace(
+    /((?:src|href)=["'])(\/(?!sandbox-assets\/|\/|https?:\/\/)[^"']+)["']/g,
+    (match, prefix, url) => `${prefix}./sandbox-assets/${url.slice(1)}"`,
   );
+  // srcset: handle multiple URLs separated by comma, possibly with descriptors
+  out = out.replace(/(srcset=["'])([^"']+)["']/g, (match, prefix, value) => {
+    const rewritten = value
+      .split(",")
+      .map((part) => {
+        let [url, ...rest] = part.trim().split(/\s+/);
+        if (
+          url.startsWith("/sandbox-assets/") ||
+          url.startsWith("http://") ||
+          url.startsWith("https://") ||
+          url.startsWith("//")
+        ) {
+          return part.trim();
+        }
+        if (url.startsWith("/")) url = `./sandbox-assets/${url.slice(1)}`;
+        return [url, ...rest].join(" ");
+      })
+      .join(", ");
+    return `${prefix}${rewritten}"`;
+  });
+  return out;
 }
