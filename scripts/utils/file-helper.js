@@ -66,6 +66,8 @@ export async function mergeAllCssFiles(
   if (removeMergedFiles) {
     await removeMergedCssFiles(dir, mergedName);
   }
+
+  return merged;
 }
 
 export function getUsedClassesFromHtml(htmlContent) {
@@ -135,4 +137,62 @@ export function pointSrcAndHrefUrlsToSandbox(input) {
     return `${prefix}${rewritten}"`;
   });
   return out;
+}
+
+export async function downloadFile(response, dirPath, encoding) {
+  const reqUrl =
+    typeof response?.url === "function" ? response.url() : response?.url;
+
+  if (typeof reqUrl !== "string" || reqUrl.length === 0) {
+    throw new Error(`downloadFile(): response has no url/url()`);
+  }
+
+  let urlPath = reqUrl.replace(/^https?:\/\/[^/]+\/?/, "");
+  urlPath = urlPath.split("?")[0].split("#")[0];
+  if (urlPath.startsWith("/")) urlPath = urlPath.slice(1);
+
+  const outPath = path.join(dirPath, urlPath);
+  await fs.mkdir(path.dirname(outPath), { recursive: true });
+
+  const data =
+    typeof response?.buffer === "function"
+      ? await response.buffer()
+      : Buffer.from(await response.arrayBuffer());
+
+  await fs.writeFile(outPath, data, encoding ? { encoding } : undefined);
+  console.log("Save:", outPath);
+}
+
+export async function parseAndDownloadFonts(
+  cssContent,
+  outputDir,
+  pipeFnc = (src) => src,
+) {
+  // find all font face definitions in css and get sources
+  const fontFaceRegex = /@font-face\s*{[^}]*}/g;
+  const fontFaces = cssContent.match(fontFaceRegex) || [];
+  const fontSources = fontFaces
+    .map((fontFace) => {
+      const srcMatch = fontFace.match(/src:\s*url\(([^)]+)\)/);
+      return srcMatch ? srcMatch[1] : null;
+    })
+    .filter(Boolean)
+    .filter((src) => !src.includes("data:"))
+    .map((src) => src.replace(/['"]/g, ""))
+    .map((src) => {
+      const rewritten = pipeFnc(src);
+      return rewritten || src;
+    });
+
+  for (const src of fontSources) {
+    try {
+      const response = await fetch(src);
+      if (!response.ok)
+        throw new Error(`Failed to fetch ${src}: ${response.status}`);
+      // console.log(`Downloading font from ${src}...`);
+      await downloadFile(response, outputDir);
+    } catch (e) {
+      console.warn("Error downloading font:", e.message);
+    }
+  }
 }

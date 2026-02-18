@@ -20,9 +20,10 @@ Sandbox Generator for SRF Sandbox including
 
 ## Copy to template
 
+To adapt any generated inside the SRF news template, run this code (the repos are required to be "directory siblings"):
+
 ```node
 cp ./template/index.html ../00_srf-news-template/index.html
 cp -R ./template/public/sandbox-assets ../00_srf-news-template/public
-
 cp ./theme-override/themeVariables.scss ../00_srf-news-template/src/assets/styles/cmsOverrides
 ```
