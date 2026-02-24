@@ -196,3 +196,13 @@ export async function parseAndDownloadFonts(
     }
   }
 }
+
+export async function readScssVariables(scssFilePath) {
+  const scss = await fs.readFile(scssFilePath, "utf8");
+  const varToColor = {};
+  const varRegex = /\$(\w[\w-]*):\s*([^;]+);/g;
+  let match;
+  while ((match = varRegex.exec(scss)))
+    varToColor[`$${match[1]}`] = match[2].trim();
+  return varToColor;
+}

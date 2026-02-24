@@ -137,3 +137,28 @@ export function toHex(color) {
   }
   return color;
 }
+
+export function colorMixToHex(cssString) {
+  // Parse color-mix(in srgb, #FFFFFFFF 12%, transparent)
+  if (
+    cssString.startsWith("color-mix(") &&
+    cssString.endsWith("transparent)")
+  ) {
+    const regex =
+      /color-mix\(\s*in\s+(\w+),\s*([^,]+?)\s*(\d+)%,\s*transparent\s*\)/;
+    const match = cssString.match(regex);
+    if (!match) throw new Error("Invalid color-mix syntax");
+    const [, , color, percentage] = match;
+    const opacity = percentage ? parseInt(percentage) / 100 : 0;
+    const hex = toHex(color);
+    if (!hex) throw new Error(`Could not resolve hex for ${color}`);
+    // Convert hex to RGBA
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const a = Math.round(opacity * 255);
+    return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}${a.toString(16).padStart(2, "0")}`;
+  }
+
+  return cssString;
+}

@@ -34,6 +34,7 @@ export function extractRules(rule, parentMedia = "") {
   return null;
 }
 
+// Convert CSS rule to definition string
 export function toCSS(rule, omitSelector = false) {
   let css = "";
   if (!omitSelector) {
@@ -55,6 +56,23 @@ export function toCSS(rule, omitSelector = false) {
     css += "}\n";
   }
   return css;
+}
+
+// Convert CSS theme variables to definition string
+export function themeVariablesToCss(themeVariables) {
+  let rootVars = ":root {\n";
+  let darkVars = "\n[data-theme='dark'] {\n";
+  for (const [cssVar, value] of Object.entries(themeVariables)) {
+    const { scssVariable, css, ignoreInCustomTheme } = value;
+    const defaultValue = ignoreInCustomTheme ? css : "unset";
+    rootVars += `  ${cssVar}: ${defaultValue};\n`;
+    if (!ignoreInCustomTheme) {
+      darkVars += `  ${cssVar}: #{${scssVariable}};\n`;
+    }
+  }
+  rootVars += "}\n";
+  darkVars += "}\n\n";
+  return { rootVars, darkVars };
 }
 
 // Custom sort: :root first, then elements, then classes
@@ -142,4 +160,13 @@ export function collectDocumentsDarkModeRules() {
     }
   }
   return darkModeRules;
+}
+
+// Resolve CSS variables in a value using a provided map of variable names to values
+export function resolveCssVariables(value, varMap) {
+  return value.replace(/var\((--[\w-]+)\)/g, (_, cssVar) => {
+    const resolved = varMap[cssVar];
+    if (!resolved) throw new Error(`Variable ${cssVar} not found in varMap`);
+    return resolved;
+  });
 }

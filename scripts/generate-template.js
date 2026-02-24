@@ -1,6 +1,3 @@
-// This script uses Puppeteer to visit a page and download all JS files loaded by the browser (including dynamic imports)
-// Usage: node scripts/fetch-all-js-puppeteer.js <URL> <outputDir>
-
 import puppeteer from "puppeteer";
 import fs from "fs/promises";
 import path from "path";
@@ -10,11 +7,13 @@ import {
   mergeAllCssFiles,
   pointSrcAndHrefUrlsToSandbox,
   getUsedClassesFromHtml,
+  downloadFile,
+  parseAndDownloadFonts,
 } from "./utils/file-helper.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const URL =
+const FETCH_URL =
   "https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit";
 const TIME_TO_WAIT_FOR_DYNAMIC_CONTENT = 5000; // in milliseconds
 
@@ -55,6 +54,7 @@ const PUBLIC_DIR = "./template/public";
 const OUTPUT_DIR = "sandbox-assets";
 const CSS_FILE_NAME = "merged.css";
 
+const fetchUrlOrigin = new URL(FETCH_URL).origin;
 const outputDirPath = path.join(PUBLIC_DIR, OUTPUT_DIR);
 await fs.mkdir(PUBLIC_DIR, { recursive: true });
 await fs.mkdir(outputDirPath, {
@@ -84,15 +84,15 @@ const assetTypes = [
       url.match(/\.(png|jpe?g|gif|webp|svg|avif|bmp|ico)(\?|$)/i),
     ext: "img",
   },
-  // {
-  //   test: (ct, url) =>
-  //     ct.startsWith("font/") ||
-  //     ct.includes("woff") ||
-  //     ct.includes("truetype") ||
-  //     ct.includes("opentype") ||
-  //     url.match(/\.(woff2?|ttf|otf|eot)(\?|$)/i),
-  //   ext: "font",
-  // },
+  {
+    test: (ct, url) =>
+      ct.startsWith("font/") ||
+      ct.includes("woff") ||
+      ct.includes("truetype") ||
+      ct.includes("opentype") ||
+      url.match(/\.(woff2?|ttf|otf|eot)(\?|$)/i),
+    ext: "font",
+  },
 ];
 
 page.on("response", async (response) => {
@@ -100,22 +100,12 @@ page.on("response", async (response) => {
     const reqUrl = response.url();
     const ct = response.headers()["content-type"] || "";
     if (reqUrl.toString().includes("base64,")) return;
+    if (!reqUrl.toString().startsWith(fetchUrlOrigin)) return;
+
     for (const type of assetTypes) {
-      if (type.test(ct, reqUrl)) {
-        if (assetSeen.has(reqUrl)) return;
+      if (type.test(ct, reqUrl) && !assetSeen.has(reqUrl)) {
         assetSeen.add(reqUrl);
-        let urlPath = reqUrl.replace(/^https?:\/\/[\w\.-]+/, "");
-        if (urlPath.startsWith("/")) urlPath = urlPath.slice(1);
-        urlPath = urlPath.split("?")[0];
-        const outPath = path.join(outputDirPath, urlPath);
-        await fs.mkdir(path.dirname(outPath), { recursive: true });
-        const data = await response.buffer();
-        await fs.writeFile(
-          outPath,
-          data,
-          type.encoding ? { encoding: type.encoding } : undefined,
-        );
-        console.log(`Saved ${type.ext}:`, outPath);
+        downloadFile(response, outputDirPath, type.encoding);
         return;
       }
     }
@@ -124,7 +114,7 @@ page.on("response", async (response) => {
   }
 });
 
-await page.goto(URL, { waitUntil: "networkidle2" });
+await page.goto(FETCH_URL, { waitUntil: "networkidle2" });
 // Wait longer for dynamic content
 await new Promise((resolve) =>
   setTimeout(resolve, TIME_TO_WAIT_FOR_DYNAMIC_CONTENT),
@@ -195,6 +185,7 @@ await page.evaluate((cssHref) => {
 
 // Save the final HTML after all JS and replacements, but only include merged.css
 let html = await page.content();
+await browser.close();
 
 // rewrite urls to point to the sandbox-assets directory
 // (example: /deeply/nested/srf-apple-touch-icon-BRxTgjQQ.png => ./sandbox-assets/deeply/nested/srf-apple-touch-icon-BRxTgjQQ.png)
@@ -224,9 +215,11 @@ const htmlPath = path.join(outputDirPath, "..", "..", "index.html");
 await fs.writeFile(htmlPath, html, { encoding: "utf8" });
 console.log("Saved HTML:", htmlPath);
 
-await browser.close();
-
 // Merge all CSS files in outputDirPath
-await mergeAllCssFiles(outputDirPath, CSS_FILE_NAME, classSet);
+const css = await mergeAllCssFiles(outputDirPath, CSS_FILE_NAME, classSet);
+
+await parseAndDownloadFonts(css, outputDirPath, (src) =>
+  src.replace("../" + OUTPUT_DIR, fetchUrlOrigin),
+);
 
 console.log("Done.");
