@@ -136,7 +136,6 @@ await browser.close();
 // Replace hardcoded color values in the content with CSS variables
 for (const [cssVar, { resolvedColor }] of Object.entries(THEME_VARIABLES)) {
   if (!resolvedColor) continue;
-  console.log(`Replacing color ${resolvedColor} with variable ${cssVar}`);
   const colorPattern = new RegExp(`${resolvedColor}(?![0-9a-fA-F])`, "g");
   content = content.replace(colorPattern, `var(${cssVar})`);
 }
