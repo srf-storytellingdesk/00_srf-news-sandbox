@@ -59,9 +59,16 @@ export function toCSS(rule, omitSelector = false) {
 }
 
 // Convert CSS theme variables to definition string
-export function themeVariablesToCss(themeVariables) {
+export function themeVariablesToCss(
+  themeVariables,
+  writeDarkDefinitions = false,
+) {
+  let darkVars = "";
+  if (!writeDarkDefinitions) {
+    darkVars += "\n\n/*** color values used\n";
+  }
   let rootVars = ":root {\n";
-  let darkVars = "\n[data-theme='dark'] {\n";
+  darkVars += "\n[data-theme='dark'] {\n";
   for (const [cssVar, value] of Object.entries(themeVariables)) {
     const { scssVariable, css, ignoreInCustomTheme } = value;
     const defaultValue = ignoreInCustomTheme ? css : "unset";
@@ -72,6 +79,9 @@ export function themeVariablesToCss(themeVariables) {
   }
   rootVars += "}\n";
   darkVars += "}\n\n";
+  if (!writeDarkDefinitions) {
+    darkVars += "***/\n\n";
+  }
   return { rootVars, darkVars };
 }
 

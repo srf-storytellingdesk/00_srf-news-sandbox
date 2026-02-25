@@ -34,26 +34,6 @@ const THEME_VARIABLES = {
     scssVariable: "$neutral-white",
     ignoreInCustomTheme: true,
   },
-  "--t-news-white-a7": {
-    css: "color-mix(in srgb, var(--t-news-white) 7.8%, transparent)",
-    ignoreInCustomTheme: true,
-  },
-  "--t-news-white-a12": {
-    css: "color-mix(in srgb, var(--t-news-white) 12%, transparent)",
-    ignoreInCustomTheme: true,
-  },
-  "--t-news-white-a24": {
-    css: "color-mix(in srgb, var(--t-news-white) 24%, transparent)",
-    ignoreInCustomTheme: true,
-  },
-  "--t-news-black-a7": {
-    css: "color-mix(in srgb, var(--t-news-black) 7.8%, transparent)",
-    ignoreInCustomTheme: true,
-  },
-  "--t-news-black-a12": {
-    css: "color-mix(in srgb, var(--t-news-black) 12%, transparent)",
-    ignoreInCustomTheme: true,
-  },
 };
 
 const __filename = fileURLToPath(import.meta.url);
@@ -71,34 +51,19 @@ const varColorLookup = Object.fromEntries(
 
 // First resolve SCSS variables to HEX, then resolve CSS variables (like color-mix) to HEX as well
 // resolve SCSS variables to HEX
-Object.entries(THEME_VARIABLES)
-  .filter(([_, { scssVariable }]) => scssVariable)
-  .forEach(([cssVar, { scssVariable }]) => {
-    const color = colorVarLookup[scssVariable];
-    if (color) {
-      THEME_VARIABLES[cssVar].resolvedColor = toHex(color);
-    }
-    THEME_VARIABLES[cssVar].css = `#{${scssVariable}}`;
-  });
+Object.entries(THEME_VARIABLES).forEach(([cssVar, { scssVariable }]) => {
+  const color = colorVarLookup[scssVariable];
+  if (color) {
+    THEME_VARIABLES[cssVar].resolvedColor = toHex(color);
+  }
+  THEME_VARIABLES[cssVar].css = `#{${scssVariable}}`;
+});
 
-// resolve CSS variables to HEX
-const cssColorVarMap = Object.fromEntries(
-  Object.entries(THEME_VARIABLES).map(([k, v]) => [
-    k,
-    v.resolvedColor || v.value,
-  ]),
+const hexToVarMap = Object.fromEntries(
+  Object.entries(THEME_VARIABLES)
+    .filter(([_, v]) => v.resolvedColor)
+    .map(([cssVar, { resolvedColor }]) => [resolvedColor.slice(0, -2), cssVar]),
 );
-Object.entries(THEME_VARIABLES)
-  .filter(([_, { scssVariable }]) => !scssVariable)
-  .forEach(([cssVar, { css: value }]) => {
-    try {
-      const resolvedValue = resolveCssVariables(value, cssColorVarMap);
-      const resolvedColor = colorMixToHex(resolvedValue);
-      THEME_VARIABLES[cssVar].resolvedColor = resolvedColor;
-    } catch (e) {
-      console.warn(`Could not resolve color-mix for ${cssVar}: ${e.message}`);
-    }
-  });
 
 const browser = await puppeteer.launch();
 const page = await browser.newPage();
@@ -171,6 +136,7 @@ await browser.close();
 // Replace hardcoded color values in the content with CSS variables
 for (const [cssVar, { resolvedColor }] of Object.entries(THEME_VARIABLES)) {
   if (!resolvedColor) continue;
+  console.log(`Replacing color ${resolvedColor} with variable ${cssVar}`);
   const colorPattern = new RegExp(`${resolvedColor}(?![0-9a-fA-F])`, "g");
   content = content.replace(colorPattern, `var(${cssVar})`);
 }
@@ -180,14 +146,36 @@ const headerPart =
   "// This theme file was generated in 00_srf-news-sandbox\n@use '@Styles/newsColors' as *;\n\n";
 const { rootVars, darkVars } = themeVariablesToCss(THEME_VARIABLES);
 
-const remainingColors = content.match(/#([0-9a-fA-F]{1,8})\b/g);
+let remainingColors = content.match(/#([0-9a-fA-F]{1,8})\b/g);
+
+// Loop through remaining hex colors and replace those matching without alpha, rewriting them with color-mix(...)
+remainingColors.forEach((color) => {
+  const baseColor = color.slice(0, -2);
+  const alpha = parseInt(color.slice(-2), 16) / 255;
+  //if (alpha === 1 || alpha === 0) return; // skip fully opaque or transparent colors
+  const varName = hexToVarMap[baseColor];
+  if (varName) {
+    const replacement = `color-mix(in srgb, var(${varName}) ${Math.round(
+      alpha * 100,
+    )}%, transparent)`;
+    content = content.replace(new RegExp(color, "g"), replacement);
+  }
+});
+
+// For transparency reasons all remaining colors get logged
+// (easily convertable into theme variables if identified as driving values for dark mode)
+remainingColors = content.match(/#([0-9a-fA-F]{1,8})\b/g);
 if (remainingColors) {
+  // Count occurrences per color value
+  const colorCounts = {};
+  remainingColors.forEach((c) => {
+    colorCounts[c] = (colorCounts[c] || 0) + 1;
+  });
   console.log(
-    "Remaining hardcoded colors:",
-    [...new Set(remainingColors)].map((c) => [
-      c,
-      varColorLookup[c] || "unknown color",
-    ]),
+    "Remaining hardcoded colors (occurrences, color, sass variable):",
+    [...new Set(remainingColors)]
+      .map((c) => [colorCounts[c], c, varColorLookup[c] || "undefined color"])
+      .sort((a, b) => b[0] - a[0]),
   );
 } else {
   console.log("No remaining hardcoded colors found.");
