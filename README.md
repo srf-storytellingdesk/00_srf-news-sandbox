@@ -18,12 +18,20 @@ Sandbox Generator for SRF Sandbox including
 - Run `pnpm theme`
 - Copy `theme-override/themeVariables.scss` to `src/asset/styles/cmsOverrides/themeVariables.scss` of SRF news template
 
-## Copy to template
+## Copy sandbox assets to template
 
-To adapt any generated inside the SRF news template, run this code (the repos are required to be "directory siblings"):
+To adapt generated template assets (including the html file) and copy them to SRF news template, run this code (the repos are required to be "directory siblings"):
 
-```node
+```sh
 cp ./template/index.html ../00_srf-news-template/index.html
-cp -R ./template/public/sandbox-assets ../00_srf-news-template/public
+rm -rf ../00_srf-news-template/public/sandbox-assets/*
+cp -R ./template/public/sandbox-assets/* ../00_srf-news-template/public/sandbox-assets/
+```
+
+## Copy theme variables to template
+
+To adapt generated theme variables and copy the file to SRF news template, run this code (the repos are required to be "directory siblings"):
+
+```sh
 cp ./theme-override/themeVariables.scss ../00_srf-news-template/src/assets/styles/cmsOverrides
 ```
