@@ -100,14 +100,19 @@ export function removeUnusedClasses(cssContent, classesUsed) {
 }
 
 export function pointAssetUrlsToSandbox(input) {
+  // Only rewrite URLs inside url(...) in CSS
   return String(input).replace(
-    // Match real URL-like paths:
-    // - optional leading slash
-    // - at least one "/" segment
-    // - no whitespace
-    // - not already sandbox-prefixed
-    /(^|[^A-Za-z0-9/_-])\/?(?!sandbox-assets\/)([A-Za-z0-9._-]+(?:\/[A-Za-z0-9._-]+)+)/g,
-    (_, pre, path) => `${pre}../sandbox-assets/${path}`,
+    /url\((['"]?)(\/[^'"\)]*)\1\)/g,
+    (match, quote, url) => {
+      if (
+        url.startsWith("/sandbox-assets/") ||
+        url.startsWith("//") ||
+        url.match(/^https?:\//)
+      ) {
+        return match;
+      }
+      return `url(${quote}../sandbox-assets${url}${quote})`;
+    },
   );
 }
 

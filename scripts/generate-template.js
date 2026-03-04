@@ -19,7 +19,7 @@ const TIME_TO_WAIT_FOR_DYNAMIC_CONTENT = 5000; // in milliseconds
 
 const DELETE_SELECTORS = [
   "script", // no js scripts (let the browser execute them, we just want the final HTML and assets)
-  "meta:not([charset])", // no meta tags except charset
+  "meta:not([charset]):not([name=viewport])", // no meta tags except charset and viewport
   'link[as="script"]', // no preloading of js files
   'link[crossorigin="use-credentials"]', // no manifests needed
   '[data-js-plugin="dynamic-promo-banner"]', // no promo stuff needed
@@ -33,9 +33,10 @@ const PREPEND_SELECTORS = {
 const TEXT_REPLACEMENTS = {
   title: "{{ARTICLE_TITLE}}",
   '[data-news-landmark="article-content"]': "{{ARTICLE_CONTENT}}",
-  ".article-title__overline": "Example Overline",
-  ".article-title__text": "Example Headline Replacing Original Title",
-  ".article-author__name span[itemprop='name']": "Example Author Name",
+  ".article-title__overline": "Spitzmarke",
+  ".article-title__text": "Stumpfer Titel",
+  ".article-author__name span[itemprop='name']":
+    "Pascal Albisser, Balz Rittmeyer, Robert Salzer, Fabian Schwander",
   ".article-lead": "",
 };
 const MOUSTACHE_REPLACEMENTS = {
@@ -168,7 +169,7 @@ await page.evaluate(
 );
 
 await page.evaluate((cssHref) => {
-  // Perform CSS merging (remove all stylesheet links and create a new one)
+  // Remove all stylesheet links and create a new one for the merged CSS file
   document
     .querySelectorAll("link[rel='stylesheet']")
     .forEach((el) => el.remove());
