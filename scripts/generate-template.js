@@ -28,19 +28,22 @@ const DELETE_SELECTORS = [
   "#config__js",
 ];
 const PREPEND_SELECTORS = {
+  head: "{{BASE_ELEMENT}}",
   "main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
 };
 const TEXT_REPLACEMENTS = {
   title: "{{ARTICLE_TITLE}}",
   '[data-news-landmark="article-content"]': "{{ARTICLE_CONTENT}}",
   ".article-title__overline": "Spitzmarke",
-  ".article-title__text": "Stumpfer Titel",
+  ".article-title__text": "Titel des Artikes",
   ".article-author__name span[itemprop='name']":
     "Pascal Albisser, Balz Rittmeyer, Robert Salzer, Fabian Schwander",
-  ".article-lead": "",
+  ".article-lead":
+    "Hier folgt der Lead-Text, der in der Regel eine kurze Zusammenfassung des Artikels enthält und die Aufmerksamkeit der Leser auf sich ziehen soll.",
 };
 const MOUSTACHE_REPLACEMENTS = {
   ARTICLE_TITLE: "<%= title %>",
+  BASE_ELEMENT: `<base href="/widgets/<%= id %>/">`,
   ARTICLE_CONTENT: await fs.readFile(
     path.resolve(__dirname, "..", "template", "embed.html"),
     "utf8",
