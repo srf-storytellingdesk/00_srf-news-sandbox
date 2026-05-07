@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
+    <base href="/widgets/<%= id %>/" />
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -214,14 +215,13 @@
             </div>
           </div>
         </section>
-
         <nav
           class="articlepage__breadcrumbs articlepage__breadcrumbs--top"
           data-news-landmark="breadcrumbs-top"
+          aria-label="Breadcrumbs"
         >
           <ol
             class="breadcrumbs"
-            aria-label="Breadcrumb"
             itemscope=""
             itemtype="http://schema.org/BreadcrumbList"
           >
@@ -258,13 +258,11 @@
           </ol>
         </nav>
 
-        <h2
+        <div
           id="skiplink__contentlink"
           class="h-offscreen h-skiplink-target"
           data-news-landmark="contentlink-target"
-        >
-          Inhalt
-        </h2>
+        ></div>
 
         <link
           itemprop="mainEntityOfPage"
@@ -283,16 +281,35 @@
           class="article-header articlepage__article-header"
           data-news-landmark="article-header"
         >
-          <h1 class="article-title" itemprop="headline">
-            <span class="article-title__overline">Spitzmarke</span>
+          <h1
+            class="article-title"
+            itemprop="headline"
+            data-news-landmark="article-title"
+          >
+            <span
+              class="article-title__overline"
+              data-news-landmark="article-title-kicker"
+              >Spitzmarke</span
+            >
             <span class="h-offscreen" aria-hidden="true" role="presentation">
               -
             </span>
-            <span class="article-title__text">Stumpfer Titel</span>
+            <span
+              class="article-title__text"
+              data-news-landmark="article-title-text"
+              >Titel des Artikes</span
+            >
           </h1>
-          <p class="article-lead"></p>
-          <div class="article-author">
-            <p class="article-author__name">
+          <p class="article-lead" data-news-landmark="article-lead">
+            Hier folgt der Lead-Text, der in der Regel eine kurze
+            Zusammenfassung des Artikels enthält und die Aufmerksamkeit der
+            Leser auf sich ziehen soll.
+          </p>
+          <div class="article-author" data-news-landmark="article-author">
+            <p
+              class="article-author__name"
+              data-news-landmark="article-author-name"
+            >
               <span class="h-offscreen">Autor:&nbsp;</span>
               <span
                 itemprop="author"
@@ -309,9 +326,16 @@
               class="article-author__date js-dateline"
               data-publicationdate="2026-02-10T09:57:38+01:00"
               data-modificationdate="2026-02-10T09:57:38+01:00"
+              data-i18n-text-published-today="Heute, #TIME# Uhr"
+              data-i18n-text-published-yesterday="Gestern, #TIME# Uhr"
+              data-i18n-text-published-else="#DATE#, #TIME# Uhr"
+              data-i18n-text-modified-today="Aktualisiert heute, #TIME# Uhr"
+              data-i18n-text-modified-yesterday="Aktualisiert gestern, #TIME# Uhr"
+              data-i18n-text-modified-else="Aktualisiert #DATE#, #TIME# Uhr"
+              data-news-landmark="article-author-date"
             >
-              <time class="" datetime="2026-02-10T09:57:38.000+01:00"
-                >Dienstag, 10.02.2026, 09:57 Uhr</time
+              <time datetime="2026-02-10T08:57:38.000Z"
+                >10.02.2026, 09:57 Uhr</time
               >
             </p>
             <div class="article-author__shimmer">
@@ -345,9 +369,7 @@
               data-share-link="https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit"
               data-share-title="Humanitäre Krisen ohne Aufmerksamkeit"
             >
-              <span class="h-offscreen"
-                >Klicken, um die Teilen-Funktion zu öffnen.</span
-              >
+              <span class="h-offscreen">Teilen</span>
 
               <span
                 class="button-wrapper button-wrapper--svg-icon"
@@ -634,7 +656,10 @@
           </div>
         </section>
 
-        <p class="article-reference articlepage__reference">
+        <p
+          class="article-reference articlepage__reference"
+          data-news-landmark="article-reference"
+        >
           Echo der Zeit, 6.2.2026, 18 Uhr;liea
         </p>
         <div class="article-element article-element--bleed">
@@ -664,9 +689,9 @@
                               ./sandbox-assets/static/cms/images/320w/o-dpr-1/2c11da.webp
                             " />
                           <img
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             class="image__img"
                             loading="lazy"
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             pinger-seen="true"
                         /></picture>
                       </div>
@@ -707,9 +732,9 @@
                               ./sandbox-assets/static/cms/images/320w/o-dpr-1/101f01.webp
                             " />
                           <img
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             class="image__img"
                             loading="lazy"
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             pinger-seen="true"
                         /></picture>
                       </div>
@@ -751,9 +776,9 @@
                               ./sandbox-assets/static/cms/images/320w/o-dpr-1/c71187.webp
                             " />
                           <img
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             class="image__img"
                             loading="lazy"
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             pinger-seen="true"
                         /></picture>
                       </div>
@@ -793,9 +818,9 @@
                               ./sandbox-assets/static/cms/images/320w/o-dpr-1/729c62.webp
                             " />
                           <img
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             class="image__img"
                             loading="lazy"
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             pinger-seen="true"
                         /></picture>
                       </div>
@@ -846,9 +871,7 @@
               data-share-link="https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit"
               data-share-title="Humanitäre Krisen ohne Aufmerksamkeit"
             >
-              <span class="h-offscreen"
-                >Klicken, um die Teilen-Funktion zu öffnen.</span
-              >
+              <span class="h-offscreen">Teilen</span>
 
               <span
                 class="button-wrapper button-wrapper--svg-icon"
@@ -868,10 +891,11 @@
         <nav
           class="articlepage__breadcrumbs articlepage__breadcrumbs--bottom"
           data-news-landmark="breadcrumbs-bottom"
+          aria-hidden="true"
+          aria-label="Breadcrumbs"
         >
           <ol
             class="breadcrumbs"
-            aria-label="Breadcrumb"
             itemscope=""
             itemtype="http://schema.org/BreadcrumbList"
           >
@@ -936,11 +960,11 @@
             <a
               href="#"
               class="teaser js-teaser"
-              data-date-published="2026-02-28T07:38:53+01:00"
-              data-date-modified="2026-03-04T04:16:43+01:00"
+              data-date-published="2026-05-07T05:58:07+02:00"
+              data-date-modified="2026-05-07T05:58:07+02:00"
               data-source=""
-              data-urn="urn:srf:article:019c0b0d-4d45-90b6-df22-2f0572c9f680"
-              data-title="Israel kündigt Tötung auch von Chameneis Nachfolger an"
+              data-urn="urn:srf:article:019dfd91-1ddb-60c2-8e1a-cc21307b973a"
+              data-title="Experte: «Trump hat sich in eine missliche Lage manövriert»"
               data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
               data-content-categories="News International"
             >
@@ -948,13 +972,13 @@
                 <div
                   class="image js-image js-image-lazyload"
                   data-image-provider="rokka"
-                  data-image-id="06391d"
+                  data-image-id="0cf10b"
                   data-largest-loaded-version="320w"
                 >
                   <picture
                     ><source
                       srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/06391d.webp
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/0cf10b.webp
                       "
                       type="image/webp"
                     />
@@ -962,7 +986,7 @@
                       alt=""
                       class="image__img"
                       loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/06391d.webp"
+                      src="./sandbox-assets/static/cms/images/320ws/0cf10b.webp"
                     />
                   </picture>
                 </div>
@@ -975,14 +999,13 @@
                   </div>
 
                   <span class="teaser__title"
-                    >Israel kündigt Tötung auch von Chameneis Nachfolger
-                    an</span
+                    >Experte: «Trump hat sich in eine missliche Lage
+                    manövriert»</span
                   >
 
                   <p class="teaser__lead">
-                    Seit Kriegsbeginn haben die USA fast 2000 Ziele im Iran
-                    angegriffen. Israel meldet 1600 Einsätze im Iran seit
-                    Samstag.
+                    Die USA tun sich schwer, eine Lösung für den Iran-Konflikt
+                    zu finden. Nahostexperte Andreas Böhm analysiert die Lage.
                   </p>
                 </div>
               </div>
@@ -991,11 +1014,11 @@
                 <div
                   class="teaser-meta js-teaser-meta teaser__meta"
                   role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019c0b0d-4d45-90b6-df22-2f0572c9f680"
-                  data-teaser-meta-video="true"
-                  data-teaser-meta-published-at="2026-02-28T07:38:53+01:00"
-                  data-teaser-meta-published-at-permanent="2026-02-28T07:38:53+01:00"
-                  data-teaser-meta-modified-at="2026-03-04T04:16:43+01:00"
+                  data-teaser-meta-source-id="urn:srf:article:019dfd91-1ddb-60c2-8e1a-cc21307b973a"
+                  data-teaser-meta-audio="true"
+                  data-teaser-meta-published-at="2026-05-07T05:58:07+02:00"
+                  data-teaser-meta-published-at-permanent="2026-05-07T05:58:07+02:00"
+                  data-teaser-meta-modified-at="2026-05-07T05:58:07+02:00"
                   data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
                 >
                   <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
@@ -1008,25 +1031,25 @@
             <a
               href="#"
               class="teaser js-teaser"
-              data-date-published="2026-03-03T18:50:37+01:00"
-              data-date-modified="2026-03-03T18:50:37+01:00"
+              data-date-published="2026-05-07T05:52:57+02:00"
+              data-date-modified="2026-05-07T05:52:57+02:00"
               data-source=""
-              data-urn="urn:srf:article:019cb417-a339-f34d-50dc-24500ffaf8e3"
-              data-title="Vorher – nachher: Satellitenbilder aus dem Iran"
+              data-urn="urn:srf:article:019dfc98-9caf-b5b1-25bb-938e5f315db7"
+              data-title="Fliegen ohne Handgepäck – so geht's"
               data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
-              data-content-categories="News International"
+              data-content-categories="News Wirtschaft"
             >
               <div class="teaser__medium">
                 <div
                   class="image js-image js-image-lazyload"
                   data-image-provider="rokka"
-                  data-image-id="df8fb8"
+                  data-image-id="d2d5eb"
                   data-largest-loaded-version="320w"
                 >
                   <picture
                     ><source
                       srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/df8fb8.webp
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/d2d5eb.webp
                       "
                       type="image/webp"
                     />
@@ -1034,7 +1057,7 @@
                       alt=""
                       class="image__img"
                       loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/df8fb8.webp"
+                      src="./sandbox-assets/static/cms/images/320ws/d2d5eb.webp"
                     />
                   </picture>
                 </div>
@@ -1043,17 +1066,16 @@
               <div class="teaser__content" role="text">
                 <div class="teaser__text">
                   <div class="teaser__kicker">
-                    <span class="teaser__kicker-text">Iran-Krieg</span>
+                    <span class="teaser__kicker-text">Low-Budget-Reisen</span>
                   </div>
 
                   <span class="teaser__title"
-                    >Vorher – nachher: Satellitenbilder aus dem Iran</span
+                    >Fliegen ohne Handgepäck – so geht's</span
                   >
 
                   <p class="teaser__lead">
-                    Satellitenbilder zeigen die Zerstörung durch die
-                    US-Luftschläge im Iran: von Chameneis Palast bis zur
-                    Atomanlage.
+                    Auch bei Swiss ist inzwischen kein Gepäckstück mehr
+                    inbegriffen. Wie soll man so reisen? Man kann.
                   </p>
                 </div>
               </div>
@@ -1062,11 +1084,11 @@
                 <div
                   class="teaser-meta js-teaser-meta teaser__meta"
                   role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019cb417-a339-f34d-50dc-24500ffaf8e3"
+                  data-teaser-meta-source-id="urn:srf:article:019dfc98-9caf-b5b1-25bb-938e5f315db7"
                   data-teaser-meta-video="true"
-                  data-teaser-meta-published-at="2026-03-03T18:50:37+01:00"
-                  data-teaser-meta-published-at-permanent="2026-03-03T18:50:37+01:00"
-                  data-teaser-meta-modified-at="2026-03-03T18:50:37+01:00"
+                  data-teaser-meta-published-at="2026-05-07T05:52:57+02:00"
+                  data-teaser-meta-published-at-permanent="2026-05-07T05:52:57+02:00"
+                  data-teaser-meta-modified-at="2026-05-07T05:52:57+02:00"
                   data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
                 >
                   <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
@@ -1079,11 +1101,11 @@
             <a
               href="#"
               class="teaser js-teaser"
-              data-date-published="2026-03-03T18:40:03+01:00"
-              data-date-modified="2026-03-03T18:40:03+01:00"
+              data-date-published="2026-05-06T19:59:34+02:00"
+              data-date-modified="2026-05-06T19:59:34+02:00"
               data-source=""
-              data-urn="urn:srf:article:019cb489-63a1-0cbb-a273-5c87a80be27d"
-              data-title="Entscheiden die USA im Krieg, oder entscheidet Israel?"
+              data-urn="urn:srf:article:019dfc5a-2c42-77a5-8551-a201a4e65af8"
+              data-title="Putins Angst vor einem Putsch – was ist da dran?"
               data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
               data-content-categories="News International"
             >
@@ -1091,13 +1113,13 @@
                 <div
                   class="image js-image js-image-lazyload"
                   data-image-provider="rokka"
-                  data-image-id="6f8af7"
+                  data-image-id="b421bb"
                   data-largest-loaded-version="320w"
                 >
                   <picture
                     ><source
                       srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/6f8af7.webp
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/b421bb.webp
                       "
                       type="image/webp"
                     />
@@ -1105,7 +1127,77 @@
                       alt=""
                       class="image__img"
                       loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/6f8af7.webp"
+                      src="./sandbox-assets/static/cms/images/320ws/b421bb.webp"
+                    />
+                  </picture>
+                </div>
+              </div>
+
+              <div class="teaser__content" role="text">
+                <div class="teaser__text">
+                  <div class="teaser__kicker">
+                    <span class="teaser__kicker-text">Geheimdienstbericht</span>
+                  </div>
+
+                  <span class="teaser__title"
+                    >Putins Angst vor einem Putsch – was ist da dran?</span
+                  >
+
+                  <p class="teaser__lead">
+                    Der Krieg stockt, die Wirtschaft darbt: Putin wird immer
+                    unbeliebter. Und laut einem Geheimdienstbericht immer
+                    nervöser.
+                  </p>
+                </div>
+              </div>
+
+              <div class="teaser__extras">
+                <div
+                  class="teaser-meta js-teaser-meta teaser__meta"
+                  role="text"
+                  data-teaser-meta-source-id="urn:srf:article:019dfc5a-2c42-77a5-8551-a201a4e65af8"
+                  data-teaser-meta-video="true"
+                  data-teaser-meta-published-at="2026-05-06T19:59:34+02:00"
+                  data-teaser-meta-published-at-permanent="2026-05-06T19:59:34+02:00"
+                  data-teaser-meta-modified-at="2026-05-06T19:59:34+02:00"
+                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
+                >
+                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
+                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="collection__teaser-item js-teaser-item">
+            <a
+              href="#"
+              class="teaser js-teaser"
+              data-date-published="2026-05-06T18:20:56+02:00"
+              data-date-modified="2026-05-06T18:20:56+02:00"
+              data-source=""
+              data-urn="urn:srf:article:019dfd9d-60f9-155a-cc24-274445c143dd"
+              data-title="Weltstars meiden immer häufiger die Bühnen in der Schweiz"
+              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
+            >
+              <div class="teaser__medium">
+                <div
+                  class="image js-image js-image-lazyload"
+                  data-image-provider="rokka"
+                  data-image-id="6b59c1"
+                  data-largest-loaded-version="320w"
+                >
+                  <picture
+                    ><source
+                      srcset="
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/6b59c1.webp
+                      "
+                      type="image/webp"
+                    />
+                    <img
+                      alt=""
+                      class="image__img"
+                      loading="lazy"
+                      src="./sandbox-assets/static/cms/images/320ws/6b59c1.webp"
                     />
                   </picture>
                 </div>
@@ -1115,18 +1207,19 @@
                 <div class="teaser__text">
                   <div class="teaser__kicker">
                     <span class="teaser__kicker-text"
-                      >Äusserung lässt aufhorchen</span
+                      >Trend bei grossen Konzerten</span
                     >
                   </div>
 
                   <span class="teaser__title"
-                    >Entscheiden die USA im Krieg, oder entscheidet
-                    Israel?</span
+                    >Weltstars meiden immer häufiger die Bühnen in der
+                    Schweiz</span
                   >
 
                   <p class="teaser__lead">
-                    Aussenminister Marco Rubio sorgt mit einer Aussage gerade
-                    für helle Aufregung in Washington.
+                    Viele internationale Top Acts lassen Letzigrund, Wankdorf
+                    und Co. auf ihren Tourneen aus. Die Gründe sind
+                    vielschichtig.
                   </p>
                 </div>
               </div>
@@ -1135,11 +1228,155 @@
                 <div
                   class="teaser-meta js-teaser-meta teaser__meta"
                   role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019cb489-63a1-0cbb-a273-5c87a80be27d"
+                  data-teaser-meta-source-id="urn:srf:article:019dfd9d-60f9-155a-cc24-274445c143dd"
+                  data-teaser-meta-audio="true"
+                  data-teaser-meta-published-at="2026-05-06T18:20:56+02:00"
+                  data-teaser-meta-published-at-permanent="2026-05-06T18:20:56+02:00"
+                  data-teaser-meta-modified-at="2026-05-06T18:20:56+02:00"
+                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
+                >
+                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
+                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="collection__teaser-item js-teaser-item">
+            <a
+              href="#"
+              class="teaser js-teaser"
+              data-date-published="2026-05-07T05:55:03+02:00"
+              data-date-modified="2026-05-07T05:55:03+02:00"
+              data-source=""
+              data-urn="urn:srf:article:019dfda2-67aa-9293-a8a6-0ec744e3e148"
+              data-title="Wer haftet nach dem Versagen an der Herzklinik des Unispitals?"
+              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
+              data-content-categories="News Schweiz"
+            >
+              <div class="teaser__medium">
+                <div
+                  class="image js-image js-image-lazyload"
+                  data-image-provider="rokka"
+                  data-image-id="c395e8"
+                  data-largest-loaded-version="320w"
+                >
+                  <picture
+                    ><source
+                      srcset="
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/c395e8.webp
+                      "
+                      type="image/webp"
+                    />
+                    <img
+                      alt=""
+                      class="image__img"
+                      loading="lazy"
+                      src="./sandbox-assets/static/cms/images/320ws/c395e8.webp"
+                    />
+                  </picture>
+                </div>
+              </div>
+
+              <div class="teaser__content" role="text">
+                <div class="teaser__text">
+                  <div class="teaser__kicker">
+                    <span class="teaser__kicker-text"
+                      >Todesfälle an USZ-Herzklinik</span
+                    >
+                  </div>
+
+                  <span class="teaser__title"
+                    >Wer haftet nach dem Versagen an der Herzklinik des
+                    Unispitals?</span
+                  >
+
+                  <p class="teaser__lead">
+                    Nun beginnt für den Kanton Zürich die juristische
+                    Aufarbeitung und damit die Haftungsfrage im Fall des
+                    Unispitals.
+                  </p>
+                </div>
+              </div>
+
+              <div class="teaser__extras">
+                <div
+                  class="teaser-meta js-teaser-meta teaser__meta"
+                  role="text"
+                  data-teaser-meta-source-id="urn:srf:article:019dfda2-67aa-9293-a8a6-0ec744e3e148"
                   data-teaser-meta-video="true"
-                  data-teaser-meta-published-at="2026-03-03T18:40:03+01:00"
-                  data-teaser-meta-published-at-permanent="2026-03-03T18:40:03+01:00"
-                  data-teaser-meta-modified-at="2026-03-03T18:40:03+01:00"
+                  data-teaser-meta-published-at="2026-05-07T05:55:03+02:00"
+                  data-teaser-meta-published-at-permanent="2026-05-07T05:55:03+02:00"
+                  data-teaser-meta-modified-at="2026-05-07T05:55:03+02:00"
+                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
+                >
+                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
+                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="collection__teaser-item js-teaser-item">
+            <a
+              href="#"
+              class="teaser js-teaser"
+              data-date-published="2026-05-06T18:22:45+02:00"
+              data-date-modified="2026-05-06T18:22:45+02:00"
+              data-source=""
+              data-urn="urn:srf:article:019dfddc-4c0a-3585-8c39-f27bfb0b4f84"
+              data-title="Muss Trump vor dem Iran kapitulieren?"
+              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
+              data-content-categories="News International"
+            >
+              <div class="teaser__medium">
+                <div
+                  class="image js-image js-image-lazyload"
+                  data-image-provider="rokka"
+                  data-image-id="6bc5ec"
+                  data-largest-loaded-version="320w"
+                >
+                  <picture
+                    ><source
+                      srcset="
+                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/6bc5ec.webp
+                      "
+                      type="image/webp"
+                    />
+                    <img
+                      alt=""
+                      class="image__img"
+                      loading="lazy"
+                      src="./sandbox-assets/static/cms/images/320ws/6bc5ec.webp"
+                    />
+                  </picture>
+                </div>
+              </div>
+
+              <div class="teaser__content" role="text">
+                <div class="teaser__text">
+                  <div class="teaser__kicker">
+                    <span class="teaser__kicker-text">Krieg im Iran</span>
+                  </div>
+
+                  <span class="teaser__title"
+                    >Muss Trump vor dem Iran kapitulieren?</span
+                  >
+
+                  <p class="teaser__lead">
+                    Trumps abrupter Stopp von «Project Freedom» zeigt sein
+                    grosses Verlangen nach einem Ausweg aus dem Iran-Krieg.
+                  </p>
+                </div>
+              </div>
+
+              <div class="teaser__extras">
+                <div
+                  class="teaser-meta js-teaser-meta teaser__meta"
+                  role="text"
+                  data-teaser-meta-source-id="urn:srf:article:019dfddc-4c0a-3585-8c39-f27bfb0b4f84"
+                  data-teaser-meta-video="true"
+                  data-teaser-meta-published-at="2026-05-06T18:22:45+02:00"
+                  data-teaser-meta-published-at-permanent="2026-05-06T18:22:45+02:00"
+                  data-teaser-meta-modified-at="2026-05-06T18:22:45+02:00"
                   data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
                 >
                   <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
@@ -1181,229 +1418,12 @@
               </div>
             </a>
           </li>
-          <li class="collection__teaser-item js-teaser-item">
-            <a
-              href="#"
-              class="teaser js-teaser"
-              data-date-published="2026-03-04T05:53:43+01:00"
-              data-date-modified="2026-03-04T05:53:43+01:00"
-              data-source=""
-              data-urn="urn:srf:article:019cb43c-1ee0-1b7b-1d01-31feab9cf3b0"
-              data-title="So blickt Russland auf den Krieg gegen seinen Verbündeten"
-              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
-              data-content-categories="News International"
-            >
-              <div class="teaser__medium">
-                <div
-                  class="image js-image js-image-lazyload"
-                  data-image-provider="rokka"
-                  data-image-id="13c92f"
-                  data-largest-loaded-version="320w"
-                >
-                  <picture
-                    ><source
-                      srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/13c92f.webp
-                      "
-                      type="image/webp"
-                    />
-                    <img
-                      alt=""
-                      class="image__img"
-                      loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/13c92f.webp"
-                    />
-                  </picture>
-                </div>
-              </div>
-
-              <div class="teaser__content" role="text">
-                <div class="teaser__text">
-                  <div class="teaser__kicker">
-                    <span class="teaser__kicker-text"
-                      >Achse Teheran-Moskau</span
-                    >
-                  </div>
-
-                  <span class="teaser__title"
-                    >So blickt Russland auf den Krieg gegen seinen
-                    Verbündeten</span
-                  >
-
-                  <p class="teaser__lead">
-                    Trotz Kritik: Russland könnte auch einen Sturz des
-                    Mullah-Regimes verkraften, sagt SRF-Korrespondent Calum
-                    MacKenzie.
-                  </p>
-                </div>
-              </div>
-
-              <div class="teaser__extras">
-                <div
-                  class="teaser-meta js-teaser-meta teaser__meta"
-                  role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019cb43c-1ee0-1b7b-1d01-31feab9cf3b0"
-                  data-teaser-meta-audio="true"
-                  data-teaser-meta-published-at="2026-03-04T05:53:43+01:00"
-                  data-teaser-meta-published-at-permanent="2026-03-04T05:53:43+01:00"
-                  data-teaser-meta-modified-at="2026-03-04T05:53:43+01:00"
-                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
-                >
-                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
-                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="collection__teaser-item js-teaser-item">
-            <a
-              href="#"
-              class="teaser js-teaser"
-              data-date-published="2026-03-03T21:53:41+01:00"
-              data-date-modified="2026-03-03T21:53:41+01:00"
-              data-source=""
-              data-urn="urn:srf:article:019cb540-db63-5eb1-ec1b-3c7f32835cb4"
-              data-title="Iran-Krieg: Vorsichtiger Auftritt von Merz im Oval Office  "
-              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
-              data-content-categories="News International"
-            >
-              <div class="teaser__medium">
-                <div
-                  class="image js-image js-image-lazyload"
-                  data-image-provider="rokka"
-                  data-image-id="d4a8c5"
-                  data-largest-loaded-version="320w"
-                >
-                  <picture
-                    ><source
-                      srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/d4a8c5.webp
-                      "
-                      type="image/webp"
-                    />
-                    <img
-                      alt=""
-                      class="image__img"
-                      loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/d4a8c5.webp"
-                    />
-                  </picture>
-                </div>
-              </div>
-
-              <div class="teaser__content" role="text">
-                <div class="teaser__text">
-                  <div class="teaser__kicker">
-                    <span class="teaser__kicker-text">Deutschland und Co.</span>
-                  </div>
-
-                  <span class="teaser__title"
-                    >Iran-Krieg: Vorsichtiger Auftritt von Merz im Oval Office
-                  </span>
-
-                  <p class="teaser__lead">
-                    Wie Deutschland, Grossbritannien, Frankreich und Spanien die
-                    US‑Angriffe im Iran einschätzen – eine Zusammenstellung.
-                  </p>
-                </div>
-              </div>
-
-              <div class="teaser__extras">
-                <div
-                  class="teaser-meta js-teaser-meta teaser__meta"
-                  role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019cb540-db63-5eb1-ec1b-3c7f32835cb4"
-                  data-teaser-meta-video="true"
-                  data-teaser-meta-published-at="2026-03-03T21:53:41+01:00"
-                  data-teaser-meta-published-at-permanent="2026-03-03T21:53:41+01:00"
-                  data-teaser-meta-modified-at="2026-03-03T21:53:41+01:00"
-                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
-                >
-                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
-                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="collection__teaser-item js-teaser-item">
-            <a
-              href="#"
-              class="teaser js-teaser"
-              data-date-published="2026-03-04T06:01:09+01:00"
-              data-date-modified="2026-03-04T06:01:09+01:00"
-              data-source=""
-              data-urn="urn:srf:article:019cb611-66b1-3252-29d7-723ebc49b277"
-              data-title="Iran-Krieg blockiert Flüge – wer zahlt die Ausfalltage?"
-              data-referrer-track="srg_mod4=teaser-#JS-PLACEHOLDER-SIZE#-link-0-pos-#JS-PLACEHOLDER-POS#"
-              data-content-categories="News Schweiz"
-            >
-              <div class="teaser__medium">
-                <div
-                  class="image js-image js-image-lazyload"
-                  data-image-provider="rokka"
-                  data-image-id="d544ddf"
-                  data-largest-loaded-version="320w"
-                >
-                  <picture
-                    ><source
-                      srcset="
-                        ./sandbox-assets/static/cms/images/320w/o-dpr-1/d544ddf.webp
-                      "
-                      type="image/webp"
-                    />
-                    <img
-                      alt=""
-                      class="image__img"
-                      loading="lazy"
-                      src="./sandbox-assets/static/cms/images/320ws/d544ddf.webp"
-                    />
-                  </picture>
-                </div>
-              </div>
-
-              <div class="teaser__content" role="text">
-                <div class="teaser__text">
-                  <div class="teaser__kicker">
-                    <span class="teaser__kicker-text"
-                      >Rückkehr aus den Ferien</span
-                    >
-                  </div>
-
-                  <span class="teaser__title"
-                    >Iran-Krieg blockiert Flüge – wer zahlt die
-                    Ausfalltage?</span
-                  >
-
-                  <p class="teaser__lead">
-                    Wer wegen gestrichener Flüge verspätet aus den Ferien
-                    zurückkehrt, trägt arbeitsrechtlich meist selbst das Risiko.
-                  </p>
-                </div>
-              </div>
-
-              <div class="teaser__extras">
-                <div
-                  class="teaser-meta js-teaser-meta teaser__meta"
-                  role="text"
-                  data-teaser-meta-source-id="urn:srf:article:019cb611-66b1-3252-29d7-723ebc49b277"
-                  data-teaser-meta-audio="true"
-                  data-teaser-meta-published-at="2026-03-04T06:01:09+01:00"
-                  data-teaser-meta-published-at-permanent="2026-03-04T06:01:09+01:00"
-                  data-teaser-meta-modified-at="2026-03-04T06:01:09+01:00"
-                  data-teaser-meta-size="#JS-PLACEHOLDER-SIZE#"
-                >
-                  <div class="teaser-meta__ltr js-teaser-meta__ltr"></div>
-                  <div class="teaser-meta__rtl js-teaser-meta__rtl"></div>
-                </div>
-              </div>
-            </a>
-          </li>
         </ul>
 
         <div
           class="collection__swipeable-controls js-collection-swipeable-controls h-element--hide"
           aria-hidden="true"
-          style="top: 231.477px"
+          style="top: 217.727px"
         >
           <span
             class="button button--icon-only collection__swipeable-button collection__swipeable-button--prev js-swipeable-control-left"
@@ -2473,6 +2493,5 @@
         }
       }
     </style>
-    <div id="usercentrics-root" data-created-at="1772612776632" style=""></div>
   </body>
 </html>
