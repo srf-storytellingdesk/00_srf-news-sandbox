@@ -28,7 +28,6 @@ const DELETE_SELECTORS = [
   "#config__js",
 ];
 const PREPEND_SELECTORS = {
-  head: "{{BASE_ELEMENT}}",
   "main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
 };
 const TEXT_REPLACEMENTS = {
@@ -43,7 +42,6 @@ const TEXT_REPLACEMENTS = {
 };
 const MOUSTACHE_REPLACEMENTS = {
   ARTICLE_TITLE: "<%= title %>",
-  BASE_ELEMENT: `<base href="/widgets/<%= id %>/">`,
   ARTICLE_CONTENT: await fs.readFile(
     path.resolve(__dirname, "..", "template", "embed.html"),
     "utf8",

@@ -119,7 +119,7 @@ export function pointAssetUrlsToSandbox(input) {
 export function pointSrcAndHrefUrlsToSandbox(input) {
   let out = String(input).replace(
     /((?:src|href)=["'])(\/(?!sandbox-assets\/|\/|https?:\/\/)[^"']+)["']/g,
-    (match, prefix, url) => `${prefix}./sandbox-assets/${url.slice(1)}"`,
+    (match, prefix, url) => `${prefix}/sandbox-assets/${url.slice(1)}"`,
   );
   // srcset: handle multiple URLs separated by comma, possibly with descriptors
   out = out.replace(/(srcset=["'])([^"']+)["']/g, (match, prefix, value) => {
@@ -135,7 +135,7 @@ export function pointSrcAndHrefUrlsToSandbox(input) {
         ) {
           return part.trim();
         }
-        if (url.startsWith("/")) url = `./sandbox-assets/${url.slice(1)}`;
+        if (url.startsWith("/")) url = `/sandbox-assets/${url.slice(1)}`;
         return [url, ...rest].join(" ");
       })
       .join(", ");
