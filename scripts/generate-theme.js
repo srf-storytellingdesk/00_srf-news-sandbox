@@ -26,14 +26,18 @@ const THEME_VARIABLES = {
   "--t-news-soft-red": { scssVariable: "$red-300" },
   "--t-news-soft-red-highlight": { scssVariable: "$red-200" },
   "--t-news-soft-grey": { scssVariable: "$warmgrey-300" },
-  "--t-news-black": {
-    scssVariable: "$neutral-black",
-    ignoreInCustomTheme: true,
-  },
-  "--t-news-white": {
-    scssVariable: "$neutral-white",
-    ignoreInCustomTheme: true,
-  },
+  "--t-news-darkest": { scssVariable: "$neutral-black" },
+  "--t-news-lightest": { scssVariable: "$neutral-white" },
+  "--t-news-warmgrey-25": { scssVariable: "$warmgrey-25" },
+  "--t-news-warmgrey-50": { scssVariable: "$warmgrey-50" },
+  "--t-news-warmgrey-100": { scssVariable: "$warmgrey-100" },
+  "--t-news-warmgrey-200": { scssVariable: "$warmgrey-200" },
+  "--t-news-warmgrey-500": { scssVariable: "$warmgrey-500" },
+  "--t-news-warmgrey-600": { scssVariable: "$warmgrey-600" },
+  "--t-news-warmgrey-700": { scssVariable: "$warmgrey-700" },
+  "--t-news-warmgrey-800": { scssVariable: "$warmgrey-800" },
+  "--t-news-warmgrey-850": { scssVariable: "$warmgrey-850" },
+  "--t-news-warmgrey-950": { scssVariable: "$warmgrey-950" },
 };
 
 const __filename = fileURLToPath(import.meta.url);
@@ -86,7 +90,9 @@ let content = await page.evaluate(async () => {
       throw new Error("window.isDarkModeMedia is not available.");
   }
   try {
-    const darkModeRules = collectDocumentsDarkModeRules();
+    const darkModeRules = collectDocumentsDarkModeRules().filter(
+      (rule) => !rule.selector.includes("--theme"),
+    );
     const mediaGroups = {};
     darkModeRules.forEach((rule) => {
       if (!mediaGroups[rule.media]) mediaGroups[rule.media] = [];
@@ -150,8 +156,12 @@ let remainingColors = content.match(/#([0-9a-fA-F]{1,8})\b/g);
 // Loop through remaining hex colors and replace those matching without alpha, rewriting them with color-mix(...)
 remainingColors.forEach((color) => {
   const baseColor = color.slice(0, -2);
-  const alpha = parseInt(color.slice(-2), 16) / 255;
-  //if (alpha === 1 || alpha === 0) return; // skip fully opaque or transparent colors
+  const alphaByte = color.slice(-2).toLowerCase();
+  const alpha = parseInt(alphaByte, 16) / 255;
+  if (alphaByte === "ff") {
+    content = content.replace(new RegExp(color, "g"), baseColor);
+    return;
+  }
   const varName = hexToVarMap[baseColor];
   if (varName) {
     const replacement = `color-mix(in srgb, var(${varName}) ${Math.round(
@@ -189,4 +199,11 @@ await fs.mkdir(path.dirname(outputFile), { recursive: true });
 await fs.writeFile(outputFile, headerPart + rootVars + darkVars + content, {
   encoding: "utf8",
 });
+// await fs.writeFile(
+//   outputFile,
+//   headerPart + rootVars + combinedVars + content,
+//   {
+//     encoding: "utf8",
+//   },
+// );
 console.log("Theme variables written to:", outputFile);
