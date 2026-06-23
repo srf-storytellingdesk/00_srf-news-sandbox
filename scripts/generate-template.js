@@ -14,7 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const FETCH_URL =
-  "https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit";
+  "https://www.rts.ch/info/regions/vaud/2026/article/gale-dans-la-broye-les-cas-confirmes-sont-rares-dans-le-canton-de-vaud-29283692.html";
 const TIME_TO_WAIT_FOR_DYNAMIC_CONTENT = 5000; // in milliseconds
 
 const DELETE_SELECTORS = [
@@ -28,15 +28,15 @@ const DELETE_SELECTORS = [
   "#config__js",
 ];
 const PREPEND_SELECTORS = {
-  "main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
+  "main[data-zone-id='content'] article": "{{TOP_MEDIA_ELEMENT}}",
 };
 const TEXT_REPLACEMENTS = {
   title: "{{ARTICLE_TITLE}}",
-  '[data-news-landmark="article-content"]': "{{ARTICLE_CONTENT}}",
-  ".article-title__overline": "Spitzmarke",
-  ".article-title__text": "Titel des Artikes",
-  ".article-author__name span[itemprop='name']":
-    "Pascal Albisser, Balz Rittmeyer, Robert Salzer, Fabian Schwander",
+  '[data-area-id="article-content"] .article-body': "{{ARTICLE_CONTENT}}",
+  ".article-category": "Spitzmarke",
+  ".article-title": "Titel des Artikes",
+  // ".article-author__name span[itemprop='name']":
+  //   "Pascal Albisser, Balz Rittmeyer, Robert Salzer, Fabian Schwander",
   ".article-lead":
     "Hier folgt der Lead-Text, der in der Regel eine kurze Zusammenfassung des Artikels enthält und die Aufmerksamkeit der Leser auf sich ziehen soll.",
 };
