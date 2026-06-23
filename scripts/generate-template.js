@@ -7,6 +7,8 @@ import {
   mergeAllCssFiles,
   pointSrcAndHrefUrlsToSandbox,
   getUsedClassesFromHtml,
+  extractInlineStyles,
+  stripOriginFromCssUrls,
   downloadFile,
   parseAndDownloadFonts,
 } from "./utils/file-helper.js";
@@ -193,6 +195,13 @@ await browser.close();
 // (example: /deeply/nested/srf-apple-touch-icon-BRxTgjQQ.png => ./sandbox-assets/deeply/nested/srf-apple-touch-icon-BRxTgjQQ.png)
 html = pointSrcAndHrefUrlsToSandbox(html);
 
+// extract <style> blocks from HTML so they end up in merged.css
+// strip the origin from absolute URLs (Puppeteer resolves relative URLs to absolute in serialized DOM)
+const { html: htmlWithoutStyles, styles: rawInlineStyles } =
+  extractInlineStyles(html);
+html = htmlWithoutStyles;
+const inlineStyles = stripOriginFromCssUrls(rawInlineStyles, fetchUrlOrigin);
+
 // list classes used in the HTML
 const classSet = getUsedClassesFromHtml(html);
 
@@ -217,8 +226,14 @@ const htmlPath = path.join(outputDirPath, "..", "..", "index.html");
 await fs.writeFile(htmlPath, html, { encoding: "utf8" });
 console.log("Saved HTML:", htmlPath);
 
-// Merge all CSS files in outputDirPath
-const css = await mergeAllCssFiles(outputDirPath, CSS_FILE_NAME, classSet);
+// Merge all CSS files in outputDirPath, including any inline <style> blocks
+const css = await mergeAllCssFiles(
+  outputDirPath,
+  CSS_FILE_NAME,
+  classSet,
+  true,
+  inlineStyles,
+);
 
 await parseAndDownloadFonts(css, outputDirPath, (src) =>
   src.replace("../" + OUTPUT_DIR, fetchUrlOrigin),

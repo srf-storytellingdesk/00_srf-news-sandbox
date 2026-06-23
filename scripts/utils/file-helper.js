@@ -47,6 +47,7 @@ export async function mergeAllCssFiles(
   mergedName,
   classesUsed = new Set(),
   removeMergedFiles = true,
+  extraCss = "",
 ) {
   const cssFiles = await collectCssFiles(dir, mergedName);
   let merged = "";
@@ -59,6 +60,11 @@ export async function mergeAllCssFiles(
     merged += fileContent;
     merged += "\n";
   }
+  if (extraCss) {
+    merged += `/* --- inline styles --- */\n`;
+    merged += pointAssetUrlsToSandbox(extraCss);
+    merged += "\n";
+  }
   const mergedPath = path.join(dir, mergedName);
 
   await fs.writeFile(mergedPath, merged, { encoding: "utf8" });
@@ -69,6 +75,18 @@ export async function mergeAllCssFiles(
   }
 
   return merged;
+}
+
+export function extractInlineStyles(htmlContent) {
+  const styles = [];
+  const html = htmlContent.replace(
+    /<style[^>]*>([\s\S]*?)<\/style>/gi,
+    (_, css) => {
+      styles.push(css);
+      return "";
+    },
+  );
+  return { html, styles: styles.join("\n") };
 }
 
 export function getUsedClassesFromHtml(htmlContent) {
@@ -98,6 +116,14 @@ export function removeUnusedClasses(cssContent, classesUsed) {
     }
   });
   return cssContent;
+}
+
+export function stripOriginFromCssUrls(cssContent, origin) {
+  const escaped = origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return cssContent.replace(
+    new RegExp(`url\\((['"]?)${escaped}(/[^'"\\)]+)\\1\\)`, "g"),
+    (_, quote, urlPath) => `url(${quote}${urlPath}${quote})`,
+  );
 }
 
 export function resolveRelativeCssUrls(cssContent, cssRelativePath) {
