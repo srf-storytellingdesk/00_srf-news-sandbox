@@ -54,6 +54,7 @@ export async function mergeAllCssFiles(
     merged += `/* --- ${path.relative(dir, file)} --- */\n`;
     let fileContent = await fs.readFile(file, "utf8");
     // fileContent = removeUnusedClasses(fileContent, classesUsed);
+    fileContent = resolveRelativeCssUrls(fileContent, path.relative(dir, file));
     fileContent = pointAssetUrlsToSandbox(fileContent);
     merged += fileContent;
     merged += "\n";
@@ -97,6 +98,26 @@ export function removeUnusedClasses(cssContent, classesUsed) {
     }
   });
   return cssContent;
+}
+
+export function resolveRelativeCssUrls(cssContent, cssRelativePath) {
+  const cssDir = path.posix.dirname(cssRelativePath.replace(/\\/g, "/"));
+  return cssContent.replace(
+    /url\((['"]?)([^'"\)]+)\1\)/g,
+    (match, quote, url) => {
+      if (
+        url.startsWith("/") ||
+        url.startsWith("http") ||
+        url.startsWith("data:") ||
+        url.startsWith("//") ||
+        url.startsWith("#")
+      ) {
+        return match;
+      }
+      const resolved = path.posix.join("/", cssDir, url);
+      return `url(${quote}${resolved}${quote})`;
+    },
+  );
 }
 
 export function pointAssetUrlsToSandbox(input) {
@@ -191,6 +212,7 @@ export async function parseAndDownloadFonts(
 
   for (const src of fontSources) {
     try {
+      console.log("fetching " + src);
       const response = await fetch(src);
       if (!response.ok)
         throw new Error(`Failed to fetch ${src}: ${response.status}`);
