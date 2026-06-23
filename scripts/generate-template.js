@@ -226,6 +226,9 @@ const htmlPath = path.join(outputDirPath, "..", "..", "index.html");
 await fs.writeFile(htmlPath, html, { encoding: "utf8" });
 console.log("Saved HTML:", htmlPath);
 
+// Download any assets referenced in HTML that Puppeteer missed (e.g. SVG sprites in <use href>)
+await downloadMissingAssets(html, outputDirPath, fetchUrlOrigin);
+
 // Merge all CSS files in outputDirPath, including any inline <style> blocks
 const css = await mergeAllCssFiles(
   outputDirPath,

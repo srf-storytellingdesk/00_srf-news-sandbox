@@ -163,8 +163,17 @@ export function pointAssetUrlsToSandbox(input) {
   );
 }
 
-export function pointSrcAndHrefUrlsToSandbox(input) {
-  let out = String(input).replace(
+export function pointSrcAndHrefUrlsToSandbox(input, origin = "") {
+  let out = String(input);
+  // Strip same-origin absolute URLs to root-relative so the rewrite below picks them up
+  if (origin) {
+    const escaped = origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    out = out.replace(
+      new RegExp(`((?:src|href)=["'])${escaped}(/[^"']*)["']`, "g"),
+      (_, prefix, url) => `${prefix}${url}"`,
+    );
+  }
+  out = out.replace(
     /((?:src|href)=["'])(\/(?!sandbox-assets\/|\/|https?:\/\/)[^"']+)["']/g,
     (match, prefix, url) => `${prefix}/sandbox-assets/${url.slice(1)}"`,
   );
@@ -189,6 +198,32 @@ export function pointSrcAndHrefUrlsToSandbox(input) {
     return `${prefix}${rewritten}"`;
   });
   return out;
+}
+
+export async function downloadMissingAssets(html, outputDir, origin) {
+  const pattern = /(?:src|href)=["']\/sandbox-assets\/([^"'#?]+)/g;
+  const paths = new Set();
+  let match;
+  while ((match = pattern.exec(html)) !== null) {
+    paths.add(match[1]);
+  }
+
+  for (const assetPath of paths) {
+    const localPath = path.join(outputDir, assetPath);
+    try {
+      await fs.access(localPath);
+    } catch {
+      const url = `${origin}/${assetPath}`;
+      console.log(`Downloading missing asset: ${url}`);
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        await downloadFile(response, outputDir);
+      } catch (e) {
+        console.warn(`Failed to download ${url}:`, e.message);
+      }
+    }
+  }
 }
 
 export async function downloadFile(response, dirPath, encoding) {
