@@ -17,7 +17,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const FETCH_URL =
-  "https://www.rsi.ch/info/natura-e-animali/Morso-di-vipera-quanto-%C3%A8-davvero-pericoloso-in-Svizzera--3837425.html";
+  "https://www.rtr.ch/novitads/grischun/malauras-mesolcina-2024-tge-ha-mana-a-la-bova-e-co-pon-ins-evitar-donns-en-l-avegnir";
 const TIME_TO_WAIT_FOR_DYNAMIC_CONTENT = 5000; // in milliseconds
 
 const DELETE_SELECTORS = [
@@ -29,21 +29,18 @@ const DELETE_SELECTORS = [
   "[style^='display: none']", // remove hidden elements (often placeholders for lazy loading or ads)
   "noscript", // no fallback content for non-js users
   "#config__js",
-  ".c-article-body .c-article-body_item",
-  // ".c-article-body .c-article-body_item:not(.c-article-credits)",
 ];
 const PREPEND_SELECTORS = {
-  // "main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
-  ".c-article-body ": "{{ARTICLE_CONTENT}}",
+  "main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
 };
 const TEXT_REPLACEMENTS = {
   title: "{{ARTICLE_TITLE}}",
-  // ".c-article-body .c-article-body_item": "{{ARTICLE_CONTENT}}",
-  // ".c-article-header": "Spitzmarke",
-  ".c-article-header h1": "Titel des Artikes",
-  ".c-article-credits span span":
+  '[data-news-landmark="article-content"]': "{{ARTICLE_CONTENT}}",
+  ".article-title__overline": "Spitzmarke",
+  ".article-title__text": "Titel des Artikes",
+  ".article-author__name span[itemprop='name']":
     "Pascal Albisser, Balz Rittmeyer, Robert Salzer, Fabian Schwander",
-  ".c-article-header h2":
+  ".article-lead":
     "Hier folgt der Lead-Text, der in der Regel eine kurze Zusammenfassung des Artikels enthält und die Aufmerksamkeit der Leser auf sich ziehen soll.",
 };
 const MOUSTACHE_REPLACEMENTS = {
