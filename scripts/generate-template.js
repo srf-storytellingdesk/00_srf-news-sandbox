@@ -10,6 +10,7 @@ import {
   extractInlineStyles,
   stripOriginFromCssUrls,
   downloadFile,
+  downloadMissingAssets,
   parseAndDownloadFonts,
 } from "./utils/file-helper.js";
 const __filename = fileURLToPath(import.meta.url);
@@ -193,7 +194,7 @@ await browser.close();
 
 // rewrite urls to point to the sandbox-assets directory
 // (example: /deeply/nested/srf-apple-touch-icon-BRxTgjQQ.png => ./sandbox-assets/deeply/nested/srf-apple-touch-icon-BRxTgjQQ.png)
-html = pointSrcAndHrefUrlsToSandbox(html);
+html = pointSrcAndHrefUrlsToSandbox(html, fetchUrlOrigin);
 
 // extract <style> blocks from HTML so they end up in merged.css
 // strip the origin from absolute URLs (Puppeteer resolves relative URLs to absolute in serialized DOM)
