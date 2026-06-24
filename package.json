@@ -11,6 +11,7 @@
     "template-swi": "node scripts/generate-template.js swi",
     "theme": "node scripts/generate-theme.js",
     "dev": "vite dev",
+    "screenshot-all": "node scripts/screenshot-all.js",
     "test": "vitest"
   },
   "keywords": [],

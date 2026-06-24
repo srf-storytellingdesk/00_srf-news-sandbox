@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
 import fs from "fs/promises";
+import { execSync } from "child_process";
 import path from "path";
 import { fileURLToPath } from "node:url";
 import prettier from "prettier";
@@ -230,3 +231,7 @@ await parseAndDownloadFonts(css, outputDirPath, (src) =>
 );
 
 console.log("Done.");
+
+execSync(`node ${path.join(__dirname, "screenshot.js")} ${configName}`, {
+  stdio: "inherit",
+});
