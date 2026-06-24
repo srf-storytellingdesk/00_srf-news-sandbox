@@ -16,33 +16,14 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const FETCH_URL =
-  "https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit";
-const TIME_TO_WAIT_FOR_DYNAMIC_CONTENT = 5000; // in milliseconds
+const configName = process.argv[2] || "srf";
+const { default: config } = await import(`./configs/${configName}.js`);
 
-const DELETE_SELECTORS = [
-  "script", // no js scripts (let the browser execute them, we just want the final HTML and assets)
-  "meta:not([charset]):not([name=viewport])", // no meta tags except charset and viewport
-  'link[as="script"]', // no preloading of js files
-  'link[crossorigin="use-credentials"]', // no manifests needed
-  '[data-js-plugin="dynamic-promo-banner"]', // no promo stuff needed
-  "[style^='display: none']", // remove hidden elements (often placeholders for lazy loading or ads)
-  "noscript", // no fallback content for non-js users
-  "#config__js",
-];
-const INSERT_SELECTORS = {
-  "^main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
-};
-const TEXT_REPLACEMENTS = {
-  title: "{{ARTICLE_TITLE}}",
-  '[data-news-landmark="article-content"]': "{{ARTICLE_CONTENT}}",
-  ".article-title__overline": "Spitzmarke",
-  ".article-title__text": "Titel des Artikes",
-  ".article-author__name span[itemprop='name']":
-    "Pascal Albisser, Balz Rittmeyer, Robert Salzer, Fabian Schwander",
-  ".article-lead":
-    "Hier folgt der Lead-Text, der in der Regel eine kurze Zusammenfassung des Artikels enthält und die Aufmerksamkeit der Leser auf sich ziehen soll.",
-};
+const FETCH_URL = config.fetchUrl;
+const TIME_TO_WAIT_FOR_DYNAMIC_CONTENT = 5000; // in milliseconds
+const DELETE_SELECTORS = config.deleteSelectors;
+const INSERT_SELECTORS = config.insertSelectors;
+const TEXT_REPLACEMENTS = config.textReplacements;
 const MOUSTACHE_REPLACEMENTS = {
   ARTICLE_TITLE: "<%= title %>",
   ARTICLE_CONTENT: await fs.readFile(
