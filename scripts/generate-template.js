@@ -30,8 +30,8 @@ const DELETE_SELECTORS = [
   "noscript", // no fallback content for non-js users
   "#config__js",
 ];
-const PREPEND_SELECTORS = {
-  "main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
+const INSERT_SELECTORS = {
+  "^main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
 };
 const TEXT_REPLACEMENTS = {
   title: "{{ARTICLE_TITLE}}",
@@ -158,17 +158,19 @@ await page.evaluate(
       const el = document.querySelector(selector);
       if (el) el.textContent = text;
     }
-    for (const [selector, text] of inserts) {
+    for (const [rawSelector, text] of inserts) {
+      const doPrepend = rawSelector.startsWith("^");
+      const selector = doPrepend ? rawSelector.slice(1) : rawSelector;
       const el = document.querySelector(selector);
       if (el) {
         const textNode = document.createTextNode(text);
-        el.prepend(textNode);
+        doPrepend ? el.prepend(textNode) : el.append(textNode);
       }
     }
   },
   {
     replacements: Object.entries(TEXT_REPLACEMENTS),
-    inserts: Object.entries(PREPEND_SELECTORS),
+    inserts: Object.entries(INSERT_SELECTORS),
   },
 );
 
