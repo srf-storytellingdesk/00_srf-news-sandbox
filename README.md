@@ -2,13 +2,13 @@
 
 Sandbox Generator for SRF Sandbox including
 
-- Template Generator: download styles and assets of SRF article page (`pnpm template`)
+- Template Generator: download styles and assets of SRF article page (`pnpm template`) or RTS, RSI, RTR and swissinfo.
 - Theme Generator: parse darkmode styles from SRF article page and replace color values with theme variables (`pnpm theme`)
  
 
 ## Template Generator
 
-- Run `pnpm template`
+- Run `pnpm template` for srf.ch (or `pnpm template-{brand}` for the brands `rts`, `rsi`, `rtr` or `swi`)
 - Copy files from `template/public` into `public` of SRF news template (or its fork)
 - Copy `template/index.html` to root of SRF news template
 

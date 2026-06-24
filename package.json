@@ -8,7 +8,7 @@
     "template-rsi": "node scripts/generate-template.js rsi",
     "template-rtr": "node scripts/generate-template.js rtr",
     "template-rts": "node scripts/generate-template.js rts",
-    "template-swissinfo": "node scripts/generate-template.js swissinfo",
+    "template-swi": "node scripts/generate-template.js swi",
     "theme": "node scripts/generate-theme.js",
     "dev": "vite dev",
     "test": "vitest"
