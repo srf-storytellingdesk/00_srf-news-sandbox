@@ -11,6 +11,7 @@ export default {
     "[style^='display: none']",
     "noscript",
     "#config__js",
+    '[data-news-landmark="topmedia"]',
   ],
 
   insertSelectors: {
