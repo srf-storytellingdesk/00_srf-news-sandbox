@@ -9,6 +9,7 @@
     "template-rtr": "node scripts/generate-template.js rtr",
     "template-rts": "node scripts/generate-template.js rts",
     "template-swi": "node scripts/generate-template.js swi",
+    "copy-template": "node scripts/copy-template.js",
     "theme": "node scripts/generate-theme.js",
     "dev": "vite dev",
     "screenshot-all": "node scripts/screenshot-all.js",

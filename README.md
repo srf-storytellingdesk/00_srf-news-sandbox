@@ -20,13 +20,9 @@ Sandbox Generator for SRF Sandbox including
 
 ## Copy sandbox assets to template
 
-To adapt generated template assets (including the html file) and copy them to SRF news template, run this code (the repos are required to be "directory siblings"):
+To adapt generated template assets (including the html file) and copy them to SRF news template (the repos are required to be "directory siblings"), run `pnpm copy-template`. If you target another (sibling) directory, add its name as the first argument, i.e. `pnpm copy-template 26-001_my-project`.
 
-```sh
-cp ./template/index.html ../00_srf-news-template/index.html
-rm -rf ../00_srf-news-template/public/sandbox-assets/*
-cp -R ./template/public/sandbox-assets/* ../00_srf-news-template/public/sandbox-assets/
-```
+
 
 ## Copy theme variables to template
 
