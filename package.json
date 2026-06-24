@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "template": "node scripts/generate-template.js",
+    "template-rsi": "node scripts/generate-template.js rsi",
+    "template-rtr": "node scripts/generate-template.js rtr",
+    "template-rts": "node scripts/generate-template.js rts",
+    "template-swissinfo": "node scripts/generate-template.js swissinfo",
     "theme": "node scripts/generate-theme.js",
     "dev": "vite dev",
     "test": "vitest"

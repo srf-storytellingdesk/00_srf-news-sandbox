@@ -24,14 +24,16 @@ const TIME_TO_WAIT_FOR_DYNAMIC_CONTENT = 5000; // in milliseconds
 const DELETE_SELECTORS = config.deleteSelectors;
 const INSERT_SELECTORS = config.insertSelectors;
 const TEXT_REPLACEMENTS = config.textReplacements;
+const EMBED_TEMPLATE = config.embedTemplate || "embed_default.html";
+const TME_TEMPLATE = config.tmeTemplate || "tme_default.html";
 const MOUSTACHE_REPLACEMENTS = {
   ARTICLE_TITLE: "<%= title %>",
   ARTICLE_CONTENT: await fs.readFile(
-    path.resolve(__dirname, "..", "template", "embed.html"),
+    path.resolve(__dirname, "..", "template", EMBED_TEMPLATE),
     "utf8",
   ),
   TOP_MEDIA_ELEMENT: await fs.readFile(
-    path.resolve(__dirname, "..", "template", "tme.html"),
+    path.resolve(__dirname, "..", "template", TME_TEMPLATE),
     "utf8",
   ),
 };

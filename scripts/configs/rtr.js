@@ -1,8 +1,6 @@
 export default {
   fetchUrl:
-    "https://www.rsi.ch/info/natura-e-animali/Morso-di-vipera-quanto-%C3%A8-davvero-pericoloso-in-Svizzera--3837425.html",
-
-  embedTemplate: "embed_rsi.html",
+    "https://www.rtr.ch/novitads/grischun/malauras-mesolcina-2024-tge-ha-mana-a-la-bova-e-co-pon-ins-evitar-donns-en-l-avegnir",
 
   deleteSelectors: [
     "script",
@@ -13,19 +11,20 @@ export default {
     "[style^='display: none']",
     "noscript",
     "#config__js",
-    ".c-article-body .c-article-body_item:not(.c-article-credits)",
   ],
 
   insertSelectors: {
-    ".c-article-body": "{{ARTICLE_CONTENT}}",
+    "^main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
   },
 
   textReplacements: {
     title: "{{ARTICLE_TITLE}}",
-    ".c-article-header h1": "Titel des Artikes",
-    ".c-article-credits span span":
+    '[data-news-landmark="article-content"]': "{{ARTICLE_CONTENT}}",
+    ".article-title__overline": "Spitzmarke",
+    ".article-title__text": "Titel des Artikes",
+    ".article-author__name span[itemprop='name']":
       "Pascal Albisser, Balz Rittmeyer, Robert Salzer, Fabian Schwander",
-    ".c-article-header h2":
+    ".article-lead":
       "Hier folgt der Lead-Text, der in der Regel eine kurze Zusammenfassung des Artikels enthält und die Aufmerksamkeit der Leser auf sich ziehen soll.",
   },
 };
