@@ -200,12 +200,15 @@ export function pointSrcAndHrefUrlsToSandbox(input, origin = "") {
   return out;
 }
 
+const ASSET_EXT = /\.(svg|png|jpe?g|gif|webp|avif|bmp|ico|woff2?|ttf|otf|eot)(\?[^"']*)?$/i;
+
 export async function downloadMissingAssets(html, outputDir, origin) {
   const pattern = /(?:src|href)=["']\/sandbox-assets\/([^"'#?]+)/g;
   const paths = new Set();
   let match;
   while ((match = pattern.exec(html)) !== null) {
-    paths.add(match[1]);
+    const p = match[1];
+    if (ASSET_EXT.test(p)) paths.add(p);
   }
 
   for (const assetPath of paths) {
@@ -226,7 +229,13 @@ export async function downloadMissingAssets(html, outputDir, origin) {
   }
 }
 
-export async function downloadFile(response, dirPath, encoding) {
+function urlHash(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+  return Math.abs(h).toString(16).padStart(8, "0");
+}
+
+export async function downloadFile(response, dirPath, encoding, fallbackExt = "") {
   const reqUrl =
     typeof response?.url === "function" ? response.url() : response?.url;
 
@@ -237,6 +246,13 @@ export async function downloadFile(response, dirPath, encoding) {
   let urlPath = reqUrl.replace(/^https?:\/\/[^/]+\/?/, "");
   urlPath = urlPath.split("?")[0].split("#")[0];
   if (urlPath.startsWith("/")) urlPath = urlPath.slice(1);
+  if (!urlPath || urlPath.endsWith("/")) {
+    if (!fallbackExt) {
+      console.warn("Skipping directory-like URL:", reqUrl);
+      return;
+    }
+    urlPath = (urlPath || "") + `bundle-${urlHash(reqUrl)}${fallbackExt}`;
+  }
 
   const outPath = path.join(dirPath, urlPath);
   await fs.mkdir(path.dirname(outPath), { recursive: true });

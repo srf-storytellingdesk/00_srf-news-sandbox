@@ -64,6 +64,7 @@ const assetTypes = [
     test: (ct, url) => ct.includes("css") || url.match(/\.css(\?|$)/),
     ext: "css",
     encoding: "utf8",
+    fallbackExt: ".css",
   },
   {
     test: (ct, url) =>
@@ -91,7 +92,7 @@ page.on("response", async (response) => {
     for (const type of assetTypes) {
       if (type.test(ct, reqUrl) && !assetSeen.has(reqUrl)) {
         assetSeen.add(reqUrl);
-        downloadFile(response, outputDirPath, type.encoding);
+        downloadFile(response, outputDirPath, type.encoding, type.fallbackExt);
         return;
       }
     }
