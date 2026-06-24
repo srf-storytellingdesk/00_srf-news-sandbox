@@ -17,7 +17,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const FETCH_URL =
-  "https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit";
+  "https://www.swissinfo.ch/eng/global-trade/swiss-group-supports-gulf-oil-and-gas-repairs/91632308";
 const TIME_TO_WAIT_FOR_DYNAMIC_CONTENT = 5000; // in milliseconds
 
 const DELETE_SELECTORS = [
@@ -29,18 +29,19 @@ const DELETE_SELECTORS = [
   "[style^='display: none']", // remove hidden elements (often placeholders for lazy loading or ads)
   "noscript", // no fallback content for non-js users
   "#config__js",
+  "main article .article-main > *:not(.article-meta-list):not(.article-meta-row)",
 ];
 const PREPEND_SELECTORS = {
-  "main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
+  // "main.articlepage article": "{{TOP_MEDIA_ELEMENT}}",
+  "main article .article-main": "{{ARTICLE_CONTENT}}",
 };
 const TEXT_REPLACEMENTS = {
   title: "{{ARTICLE_TITLE}}",
-  '[data-news-landmark="article-content"]': "{{ARTICLE_CONTENT}}",
   ".article-title__overline": "Spitzmarke",
-  ".article-title__text": "Titel des Artikes",
-  ".article-author__name span[itemprop='name']":
+  "main article .article-header h1": "Titel des Artikes",
+  ".article-authors .author__title":
     "Pascal Albisser, Balz Rittmeyer, Robert Salzer, Fabian Schwander",
-  ".article-lead":
+  "h2.lead-text__content":
     "Hier folgt der Lead-Text, der in der Regel eine kurze Zusammenfassung des Artikels enthält und die Aufmerksamkeit der Leser auf sich ziehen soll.",
 };
 const MOUSTACHE_REPLACEMENTS = {
@@ -83,6 +84,7 @@ const assetTypes = [
     test: (ct, url) => ct.includes("css") || url.match(/\.css(\?|$)/),
     ext: "css",
     encoding: "utf8",
+    fallbackExt: ".css",
   },
   {
     test: (ct, url) =>
@@ -110,7 +112,7 @@ page.on("response", async (response) => {
     for (const type of assetTypes) {
       if (type.test(ct, reqUrl) && !assetSeen.has(reqUrl)) {
         assetSeen.add(reqUrl);
-        downloadFile(response, outputDirPath, type.encoding);
+        downloadFile(response, outputDirPath, type.encoding, type.fallbackExt);
         return;
       }
     }
