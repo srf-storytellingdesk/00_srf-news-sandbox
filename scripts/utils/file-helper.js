@@ -126,6 +126,7 @@ export function stripOriginFromCssUrls(cssContent, origin) {
   );
 }
 
+
 export function resolveRelativeCssUrls(cssContent, cssRelativePath) {
   const cssDir = path.posix.dirname(cssRelativePath.replace(/\\/g, "/"));
   return cssContent.replace(
