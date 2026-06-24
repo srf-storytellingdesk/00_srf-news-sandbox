@@ -26,8 +26,8 @@ const THEME_VARIABLES = {
   "--t-news-soft-red": { scssVariable: "$red-300" },
   "--t-news-soft-red-highlight": { scssVariable: "$red-200" },
   "--t-news-soft-grey": { scssVariable: "$warmgrey-300" },
-  "--t-news-darkest": { scssVariable: "$neutral-black" },
-  "--t-news-lightest": { scssVariable: "$neutral-white" },
+  "--t-news-min-contrast": { scssVariable: "$neutral-black" },
+  "--t-news-max-contrast": { scssVariable: "$neutral-white" },
   "--t-news-warmgrey-25": { scssVariable: "$warmgrey-25" },
   "--t-news-warmgrey-50": { scssVariable: "$warmgrey-50" },
   "--t-news-warmgrey-100": { scssVariable: "$warmgrey-100" },
@@ -38,6 +38,30 @@ const THEME_VARIABLES = {
   "--t-news-warmgrey-800": { scssVariable: "$warmgrey-800" },
   "--t-news-warmgrey-850": { scssVariable: "$warmgrey-850" },
   "--t-news-warmgrey-950": { scssVariable: "$warmgrey-950" },
+};
+
+const DEFAULT_VARIABLES = {
+  "--t-news-body-bg": { scssVariable: "$warmgrey-25" },
+  "--t-news-interactive-bg": { scssVariable: "$warmgrey-50" },
+  "--t-news-primary-bg": { scssVariable: "$neutral-offwhite" },
+  "--t-news-primary-text": { scssVariable: "$warmgrey-1100" },
+  "--t-news-secondary-bg": { scssVariable: "$warmgrey-25" },
+  "--t-news-secondary-highlight-bg": { scssVariable: "$warmgrey-10" },
+  "--t-news-soft-red": { scssVariable: "$red-600" },
+  "--t-news-soft-red-highlight": { scssVariable: "$red-800" },
+  "--t-news-soft-grey": { scssVariable: "$warmgrey-800" },
+  "--t-news-min-contrast": { scssVariable: "$neutral-white" },
+  "--t-news-max-contrast": { scssVariable: "$neutral-black" },
+  "--t-news-warmgrey-25": { scssVariable: "$warmgrey-1100" },
+  "--t-news-warmgrey-50": { scssVariable: "$warmgrey-950" },
+  "--t-news-warmgrey-100": { scssVariable: "$warmgrey-900" },
+  "--t-news-warmgrey-200": { scssVariable: "$warmgrey-700" },
+  "--t-news-warmgrey-500": { scssVariable: "$warmgrey-700" },
+  "--t-news-warmgrey-600": { scssVariable: "$warmgrey-400" },
+  "--t-news-warmgrey-700": { scssVariable: "$warmgrey-200" },
+  "--t-news-warmgrey-800": { scssVariable: "$warmgrey-100" },
+  "--t-news-warmgrey-850": { scssVariable: "$warmgrey-100" },
+  "--t-news-warmgrey-950": { scssVariable: "$warmgrey-300" },
 };
 
 const __filename = fileURLToPath(import.meta.url);
@@ -151,6 +175,13 @@ const headerPart =
   "// This theme file was generated in 00_srf-news-sandbox\n@use '@Styles/newsColors' as *;\n\n";
 const { rootVars, darkVars } = themeVariablesToCss(THEME_VARIABLES);
 
+let defaultVarsBlock = "\n[data-theme='default'] {\n";
+for (const [cssVar, { scssVariable }] of Object.entries(DEFAULT_VARIABLES)) {
+  defaultVarsBlock += `  ${cssVar}: #{${scssVariable}};\n`;
+}
+defaultVarsBlock += "}\n\n";
+const combinedVars = darkVars.replace("***/", defaultVarsBlock + "***/");
+
 let remainingColors = content.match(/#([0-9a-fA-F]{1,8})\b/g);
 
 // Loop through remaining hex colors and replace those matching without alpha, rewriting them with color-mix(...)
@@ -196,14 +227,7 @@ if (typeof content !== "string") {
 }
 
 await fs.mkdir(path.dirname(outputFile), { recursive: true });
-await fs.writeFile(outputFile, headerPart + rootVars + darkVars + content, {
+await fs.writeFile(outputFile, headerPart + rootVars + combinedVars + content, {
   encoding: "utf8",
 });
-// await fs.writeFile(
-//   outputFile,
-//   headerPart + rootVars + combinedVars + content,
-//   {
-//     encoding: "utf8",
-//   },
-// );
 console.log("Theme variables written to:", outputFile);
