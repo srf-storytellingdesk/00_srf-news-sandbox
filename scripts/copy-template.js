@@ -5,13 +5,14 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 
-const targetName = process.argv[2] || "00_srf-news-template";
+const platform = process.argv[2] || "srf";
+const targetName = process.argv[3] || `00_${platform}-news-template`;
 const targetDir = path.resolve(ROOT, "..", targetName);
 
-console.log(`Copying template to: ${targetDir}`);
+console.log(`Copying ${platform} template to: ${targetDir}`);
 
-const srcHtml = path.join(ROOT, "template", "index.html");
-const srcAssets = path.join(ROOT, "template", "public", "sandbox-assets");
+const srcHtml = path.join(ROOT, "template", platform, "index.html");
+const srcAssets = path.join(ROOT, "template", platform, "public", "sandbox-assets");
 const destHtml = path.join(targetDir, "index.html");
 const destAssets = path.join(targetDir, "public", "sandbox-assets");
 

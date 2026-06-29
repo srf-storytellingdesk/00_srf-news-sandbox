@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { createHtmlPlugin } from "vite-plugin-html";
 
+const platform = process.env.PLATFORM || "srf";
+
 export default defineConfig({
   base: "/widgets/sandbox", // adjust if your widget will be served from a different subpath
   test: {
@@ -21,7 +23,6 @@ export default defineConfig({
       },
     }),
   ],
-  root: "template",
-  // you’ll serve downloaded CMS assets from /public/cms/...
+  root: `template/${platform}`,
   publicDir: "public",
 });

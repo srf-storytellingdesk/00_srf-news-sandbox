@@ -13,7 +13,7 @@ const configName = process.argv[2] || "srf";
 
 function startVite() {
   return new Promise((resolve, reject) => {
-    const proc = spawn("pnpm", ["dev"], {
+    const proc = spawn("pnpm", ["dev", configName], {
       cwd: ROOT,
       stdio: ["ignore", "pipe", "pipe"],
     });

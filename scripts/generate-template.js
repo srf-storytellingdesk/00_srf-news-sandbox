@@ -39,7 +39,7 @@ const MOUSTACHE_REPLACEMENTS = {
   ),
 };
 
-const PUBLIC_DIR = "./template/public";
+const PUBLIC_DIR = `./template/${configName}/public`;
 const OUTPUT_DIR = "sandbox-assets";
 const CSS_FILE_NAME = "merged.css";
 
@@ -49,6 +49,14 @@ await fs.mkdir(PUBLIC_DIR, { recursive: true });
 await fs.mkdir(outputDirPath, {
   recursive: true,
 });
+
+// Symlink template/src into the platform dir so Vite can resolve it
+const srcSymlink = path.resolve(`./template/${configName}/src`);
+try {
+  await fs.symlink("../src", srcSymlink, "dir");
+} catch (e) {
+  if (e.code !== "EEXIST") throw e;
+}
 
 // empty output directory before saving new files
 const existingFiles = await fs.readdir(outputDirPath);
