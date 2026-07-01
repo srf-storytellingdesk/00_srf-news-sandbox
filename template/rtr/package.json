@@ -1,0 +1,6 @@
+{
+  "name": "@srg-sandboxes/sandbox-rtr",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module"
+}
