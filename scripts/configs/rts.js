@@ -2,6 +2,8 @@ export default {
   fetchUrl:
     "https://www.rts.ch/info/regions/vaud/2026/article/gale-dans-la-broye-les-cas-confirmes-sont-rares-dans-le-canton-de-vaud-29283692.html",
 
+  embedTemplate: "embed_rts.html",
+
   deleteSelectors: [
     "script",
     "meta:not([charset]):not([name=viewport])",

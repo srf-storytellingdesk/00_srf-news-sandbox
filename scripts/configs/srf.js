@@ -2,6 +2,8 @@ export default {
   fetchUrl:
     "https://www.srf.ch/news/dialog/fehlende-berichterstattung-humanitaere-krisen-ohne-aufmerksamkeit",
 
+  embedTemplate: "embed_default.html",
+
   deleteSelectors: [
     "script",
     "meta:not([charset]):not([name=viewport])",

@@ -2,6 +2,8 @@ export default {
   fetchUrl:
     "https://www.rtr.ch/novitads/grischun/malauras-mesolcina-2024-tge-ha-mana-a-la-bova-e-co-pon-ins-evitar-donns-en-l-avegnir",
 
+  embedTemplate: "embed_default.html",
+
   deleteSelectors: [
     "script",
     "meta:not([charset]):not([name=viewport])",
