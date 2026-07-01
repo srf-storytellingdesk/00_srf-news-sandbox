@@ -2,26 +2,21 @@
 
 Sandbox Generator for SRF Sandbox including
 
-- Template Generator: download styles and assets of SRF article page (`pnpm template`) or RTS, RSI, RTR and swissinfo.
+- Template Generator: download styles and assets of SRF article page – or those of RTS, RSI, RTR and swissinfo.
 - Theme Generator: parse darkmode styles from SRF article page and replace color values with theme variables (`pnpm theme`)
  
 
 ## Template Generator
 
-- Run `pnpm template` for srf.ch (or `pnpm template-{brand}` for the brands `rts`, `rsi`, `rtr` or `swi`)
-- Copy files from `template/public` into `public` of SRF news template (or its fork)
-- Copy `template/index.html` to root of SRF news template
+- Run `pnpm template` for srf.ch (or `pnpm template {brand}` for the brands `rts`, `rsi`, `rtr` or `swi`)
+- Run `pnpm dev {brand}` to test the template locally
+- Run `pnpm copy-template {brand} {destination}` to copy generated template assets (including the html file) to SRF news template (or forks of it, in either case they are required to be "directory siblings" to this repo), i.e. `pnpm copy-template srf 26-001_my-project`.
 
 
 ## Theme Generator
 
 - Run `pnpm theme`
 - Copy `theme-override/themeVariables.scss` to `src/asset/styles/cmsOverrides/themeVariables.scss` of SRF news template
-
-## Copy sandbox assets to template
-
-To adapt generated template assets (including the html file) and copy them to SRF news template (the repos are required to be "directory siblings"), run `pnpm copy-template`. If you target another (sibling) directory, add its name as the first argument, i.e. `pnpm copy-template 26-001_my-project`.
-
 
 
 ## Copy theme variables to template

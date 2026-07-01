@@ -5,10 +5,6 @@
   "type": "module",
   "scripts": {
     "template": "node scripts/generate-template.js",
-    "template-rsi": "node scripts/generate-template.js rsi",
-    "template-rtr": "node scripts/generate-template.js rtr",
-    "template-rts": "node scripts/generate-template.js rts",
-    "template-swi": "node scripts/generate-template.js swi",
     "copy-template": "node scripts/copy-template.js",
     "theme": "node scripts/generate-theme.js",
     "dev": "node scripts/dev.js",
