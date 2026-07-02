@@ -33,7 +33,7 @@
       crossorigin="anonymous"
     />
 
-    <!-- This site is optimized with the Yoast SEO Premium plugin v27.6 (Yoast SEO v27.6) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->
+    <!-- This site is optimized with the Yoast SEO Premium plugin v27.9 (Yoast SEO v27.9) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->
     <title><%= title %></title>
 
     <link
@@ -43,7 +43,7 @@
 
     <link
       rel="image_src"
-      href="/sandbox-assets/content/wp-content/uploads/sites/13/2026/06/RAS_LAFFAN_01.jpg?ver=3607f653&amp;fit=1200,800"
+      href="/sandbox-assets/content/wp-content/uploads/sites/13/2026/06/RAS_LAFFAN_01.jpg?ver=7925bb77&amp;fit=1200,800"
     />
     <!-- / Yoast SEO Premium plugin. -->
 
@@ -55,7 +55,7 @@
     <link href="//web.cmp.usercentrics.eu" rel="preconnect" />
     <link href="//api.usercentrics.eu" rel="preconnect" />
     <link href="//privacy-proxy.usercentrics.eu" rel="preconnect" />
-    <!-- www.swissinfo.ch is managing ads with Advanced Ads 2.0.21 – https://wpadvancedads.com/ -->
+    <!-- www.swissinfo.ch is managing ads with Advanced Ads 2.0.22 – https://wpadvancedads.com/ -->
 
     <link
       rel="EditURI"
@@ -76,29 +76,34 @@
     />
     <link
       rel="alternate"
+      hreflang="ar-AE"
+      href="/sandbox-assets/ara/%d8%a7%d9%84%d8%aa%d8%ac%d8%a7%d8%b1%d8%a9-%d8%a7%d9%84%d8%b9%d8%a7%d9%84%d9%85%d9%8a%d8%a9/%d8%b4%d8%b1%d9%83%d8%a9-%d8%b3%d9%88%d9%8a%d8%b3%d8%b1%d9%8a%d8%a9-%d8%aa%d8%b4%d8%a7%d8%b1%d9%83-%d9%81%d9%8a-%d8%a5%d8%b5%d9%84%d8%a7%d8%ad-%d9%85%d8%b1%d8%a7%d9%81%d9%82-%d8%a7%d9%84%d9%86%d9%81%d8%b7-%d9%88%d8%a7%d9%84%d8%ba%d8%a7%d8%b2-%d8%a7%d9%84%d9%85%d8%aa%d8%b6%d8%b1%d8%b1%d8%a9-%d9%85%d9%86-%d8%a7%d9%84%d8%ad%d8%b1%d8%a8/91633164"
+    />
+    <link
+      rel="alternate"
       hreflang="en-GB"
       href="/sandbox-assets/eng/global-trade/swiss-group-supports-gulf-oil-and-gas-repairs/91632308"
     />
 
     <link
       rel="icon"
-      href="/sandbox-assets/eng/wp-content/client-mu-plugins/swissinfo-wp-customizations/resources/svg/swi-site-icon.svg?ver=1764775639"
+      href="/sandbox-assets/eng/wp-content/client-mu-plugins/swissinfo-wp-customizations/resources/svg/swi-site-icon.svg?ver=1770807995"
       type="image/svg+xml"
       sizes="any"
     />
     <link
       rel="icon"
-      href="/sandbox-assets/eng/wp-content/client-mu-plugins/swissinfo-wp-customizations/resources/png/swi-site-icon-32.png?ver=1764775639"
+      href="/sandbox-assets/eng/wp-content/client-mu-plugins/swissinfo-wp-customizations/resources/png/swi-site-icon-32.png?ver=1770807995"
       sizes="32x32"
     />
     <link
       rel="icon"
-      href="/sandbox-assets/eng/wp-content/client-mu-plugins/swissinfo-wp-customizations/resources/png/swi-site-icon-192.png?ver=1764775639"
+      href="/sandbox-assets/eng/wp-content/client-mu-plugins/swissinfo-wp-customizations/resources/png/swi-site-icon-192.png?ver=1770807995"
       sizes="192x192"
     />
     <link
       rel="apple-touch-icon"
-      href="/sandbox-assets/eng/wp-content/client-mu-plugins/swissinfo-wp-customizations/resources/png/swi-site-icon-180.png?ver=1764775639"
+      href="/sandbox-assets/eng/wp-content/client-mu-plugins/swissinfo-wp-customizations/resources/png/swi-site-icon-180.png?ver=1770807995"
     />
 
     <link rel="stylesheet" href="/sandbox-assets/merged.css" />
@@ -106,9 +111,9 @@
   <body
     class="wp-singular post-template-default single single-post postid-3169208 single-format-standard wp-embed-responsive wp-theme-swissinfo-theme --outlet-swi --article-type-default --comments-closed aa-prefix-swiss- aa-disabled-bots"
     x-data="body"
-    x-on:add-no-scroll.window="isNoScroll = true"
-    x-on:remove-no-scroll.window="isNoScroll = false"
-    x-on:toggle-no-scroll.window="isNoScroll = !isNoScroll"
+    x-on:add-no-scroll.window="lockScroll()"
+    x-on:remove-no-scroll.window="unlockScroll()"
+    x-on:toggle-no-scroll.window="toggleScroll()"
     x-bind:class="isNoScroll &amp;&amp; '--no-scroll'"
   >
     <nav class="skip-links" aria-label="Skip links">
@@ -449,7 +454,7 @@
             <div class="article-meta-row spacious">
               <div
                 class="read-aloud"
-                x-data='readAloud({"tracks":[{"id":"7adcc53ee5fe56697223745337af4695","url":"https://cdn.prod.swi-services.ch/91632308/text-to-speech/en-US.fda5525c-4be7-45dd-98fd-92b7c9409a4c.mp3","metadata":{"media_publication_date":"2026-06-23","media_title":"Swiss group supports Gulf oil and gas repairs","media_urn":"urn:swi:audio:91632308","media_show":"en-US","media_episode":"en-US on 23.06.2026","media_enterprise_units":"SWI","media_language":"eng","media_content_group":"tts"}},{"id":"969fe0987e8b1c8977735c01f5088ef8","url":"https://cdn.prod.swi-services.ch/91632308/text-to-speech/en-GB.7c6fdacd-32f5-4b62-851a-19ee22f2f70a.mp3","metadata":{"media_publication_date":"2026-06-23","media_title":"Swiss group supports Gulf oil and gas repairs","media_urn":"urn:swi:audio:91632308","media_show":"en-GB","media_episode":"en-GB on 23.06.2026","media_enterprise_units":"SWI","media_language":"eng","media_content_group":"tts"}}]})'
+                x-data='readAloud({"tracks":[{"id":"5dacbc57e40fb899c62ab8c03ce1a8d8","url":"https://cdn.prod.swi-services.ch/91632308/text-to-speech/en-US.78c204ae-2324-4fc5-86b9-2ef7936ebe0e.mp3","metadata":{"media_publication_date":"2026-06-23","media_title":"Swiss group supports Gulf oil and gas repairs","media_urn":"urn:swi:audio:91632308","media_show":"en-US","media_episode":"en-US on 23.06.2026","media_enterprise_units":"SWI","media_language":"eng","media_content_group":"tts"}},{"id":"944b0c79a1b3c76139ffc209a38fa3d9","url":"https://cdn.prod.swi-services.ch/91632308/text-to-speech/en-GB.112a9b02-9abf-42f9-a7db-166e7dbb050a.mp3","metadata":{"media_publication_date":"2026-06-23","media_title":"Swiss group supports Gulf oil and gas repairs","media_urn":"urn:swi:audio:91632308","media_show":"en-GB","media_episode":"en-GB on 23.06.2026","media_enterprise_units":"SWI","media_language":"eng","media_content_group":"tts"}}]})'
               >
                 <div
                   class="read-aloud/controller --is-inactive"
@@ -662,7 +667,7 @@
                       </svg>
                     </span>
                     <span class="article-translations__header/caption">
-                      Other language: 1
+                      Other languages: 2
                     </span>
                   </div>
                   <div class="article-translations__toggle/icon">
@@ -1015,6 +1020,20 @@
                     </a>
                   </div>
                 </li>
+                <li class="footer-menu__item">
+                  <div
+                    class="privacy-settings-menu-item"
+                    x-data="footerPrivacySettingsMenuItem()"
+                  >
+                    <button
+                      type="button"
+                      class="privacy-settings-menu-item__button"
+                      x-on:click.prevent="invoke()"
+                    >
+                      Privacy settings
+                    </button>
+                  </div>
+                </li>
               </ul>
             </nav>
           </div>
@@ -1240,12 +1259,12 @@
     ></div>
 
     <div
-      class="swiss-b394e009bf96d6a22290b5ad70252a25 swiss-mobile-pop-up"
-      id="swiss-b394e009bf96d6a22290b5ad70252a25"
+      class="swiss-758bb4e83fa2cb748f4a9f23fb4dcf4c swiss-mobile-pop-up"
+      id="swiss-758bb4e83fa2cb748f4a9f23fb4dcf4c"
     ></div>
     <div
-      class="swiss-c6527a660f55698574eaea4bc804d89b swiss-desktop-pop-up"
-      id="swiss-c6527a660f55698574eaea4bc804d89b"
+      class="swiss-6b09f7972e3fcc7d512a99655b991703 swiss-desktop-pop-up"
+      id="swiss-6b09f7972e3fcc7d512a99655b991703"
     ></div>
     <!-- Start of Survicate (www.survicate.com) code -->
 
